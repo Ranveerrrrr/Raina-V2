@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Phishing Awareness – CyberScan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url('wallpapers/5.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+    .phishing-alert {
+      position: relative;
+      border-left: 4px solid #f59e0b;
+    }
+    .platform-card {
+      transition: all 0.3s ease;
+      border: 1px solid #374151;
+    }
+    .platform-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.4);
+      border-color: #3b82f6;
+    }
+    .wave-divider {
+      height: 50px;
+      overflow: hidden;
+      background: transparent;
+    }
+    .cyber-border {
+      position: relative;
+    }
+    .cyber-border::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #3b82f6, #10b981, #f59e0b);
+      z-index: 10;
+    }
+  </style>
+</head>
+<body class="text-white min-h-screen p-6">
+  <div class="max-w-5xl mx-auto space-y-10">
+    
+    <div class="flex items-center justify-between">
+        <a href="../index.html" class="flex items-center text-cyan-400 hover:text-cyan-300 transition-colors">
+            <i class="fas fa-arrow-left mr-2"></i>
+            <span><- Back</span>
+          </a>
+      <div class="text-sm px-3 py-1 bg-red-500/20 rounded-full border border-red-500/50">
+        🔒 Security Education Portal
+      </div>
+    </div>
+
+    
+    <header class="text-center cyber-border bg-gray-900/80 p-8 rounded-xl border border-cyan-500/30 shadow-xl">
+      <div class="mb-4 inline-flex p-4 rounded-full bg-cyan-900/20 border border-cyan-500/30">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Phishing Awareness [Lab's don't work]</h1>
+      <p class="text-gray-300 mt-4 text-lg max-w-2xl mx-auto">
+        Learn to identify, avoid, and report phishing attempts. Protect yourself and your organization from cyber threats.
+      </p>
+    </header>
+
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+      <div class="bg-gray-800/60 p-4 rounded-lg border border-red-400/30">
+        <div class="text-2xl font-bold text-red-400">91%</div>
+        <div class="text-gray-300 text-sm">of cyber attacks start with phishing</div>
+      </div>
+      <div class="bg-gray-800/60 p-4 rounded-lg border border-yellow-400/30">
+        <div class="text-2xl font-bold text-yellow-400">$4.65M</div>
+        <div class="text-gray-300 text-sm">average cost of a phishing breach</div>
+      </div>
+      <div class="bg-gray-800/60 p-4 rounded-lg border border-green-400/30">
+        <div class="text-2xl font-bold text-green-400">80%</div>
+        <div class="text-gray-300 text-sm">reduction with proper training</div>
+      </div>
+    </div>
+
+    
+    <section class="bg-gray-900/80 p-6 rounded-xl shadow-lg border border-blue-500/30">
+      <h2 class="text-2xl font-semibold mb-4 flex items-center">
+        <span class="inline-flex items-center justify-center w-8 h-8 bg-blue-500/20 rounded-full mr-2">
+          🔐
+        </span>
+        What is Phishing?
+      </h2>
+      <p class="text-gray-300 mb-4">
+        Phishing is a cyberattack technique where attackers pretend to be trustworthy entities (like a bank or a social media platform)
+        to trick users into giving away personal information — such as passwords, OTPs, or card details.
+      </p>
+      
+      <div class="phishing-alert bg-amber-900/20 p-4 rounded-lg my-6">
+        <h3 class="font-bold text-amber-300 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+          </svg>
+          Immediate Threat Indicators
+        </h3>
+        <p class="text-amber-200 text-sm mt-2">Phishing attempts often create a sense of urgency to bypass your critical thinking. Always pause and verify.</p>
+      </div>
+
+      <h2 class="text-2xl font-semibold mt-8 mb-4 flex items-center">
+        <span class="inline-flex items-center justify-center w-8 h-8 bg-red-500/20 rounded-full mr-2">
+          📌
+        </span>
+        Common Signs of Phishing
+      </h2>
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <li class="flex items-start bg-gray-800/40 p-3 rounded-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-400 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+          </svg>
+          <span class="text-gray-300">Fake login pages that look identical to real ones</span>
+        </li>
+        <li class="flex items-start bg-gray-800/40 p-3 rounded-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-400 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+          </svg>
+          <span class="text-gray-300">Urgent messages asking to reset password or verify identity</span>
+        </li>
+        <li class="flex items-start bg-gray-800/40 p-3 rounded-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-400 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+          </svg>
+          <span class="text-gray-300">Emails with suspicious links or attachments</span>
+        </li>
+        <li class="flex items-start bg-gray-800/40 p-3 rounded-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-400 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+          </svg>
+          <span class="text-gray-300">Generic greetings like "Dear user" instead of your name</span>
+        </li>
+      </ul>
+
+      <div class="mt-6 p-4 bg-red-900/20 rounded-lg border border-red-500/50">
+        <p class="text-red-200 font-semibold flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z" clip-rule="evenodd" />
+          </svg>
+          ⚠️ Never enter your real credentials on suspicious pages. This lab is for awareness only.
+        </p>
+      </div>
+    </section>
+
+    
+    <section class="bg-gray-900/80 p-6 rounded-xl shadow-lg border border-purple-500/30">
+      <h2 class="text-2xl font-semibold mb-4 flex items-center">
+        <span class="inline-flex items-center justify-center w-8 h-8 bg-purple-500/20 rounded-full mr-2">
+          🧪
+        </span>
+        Try the Phishing Simulation Lab
+      </h2>
+      <p class="text-gray-300 mb-6">
+        Select a platform to see how phishing pages are designed — for learning and awareness only. Practice identifying fake pages in a safe environment.
+      </p>
+
+      <div class="mb-6 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+        <div class="platform-card bg-gray-800/40 p-3 rounded-lg text-center cursor-pointer" onclick="selectPlatform('facebook')">
+          <div class="text-2xl mb-1">📘</div>
+          <div class="text-xs">Facebook</div>
+        </div>
+        <div class="platform-card bg-gray-800/40 p-3 rounded-lg text-center cursor-pointer" onclick="selectPlatform('gmail')">
+          <div class="text-2xl mb-1">📧</div>
+          <div class="text-xs">Gmail</div>
+        </div>
+        <div class="platform-card bg-gray-800/40 p-3 rounded-lg text-center cursor-pointer" onclick="selectPlatform('instagram')">
+          <div class="text-2xl mb-1">📸</div>
+          <div class="text-xs">Instagram</div>
+        </div>
+        <div class="platform-card bg-gray-800/40 p-3 rounded-lg text-center cursor-pointer" onclick="selectPlatform('twitter')">
+          <div class="text-2xl mb-1">🐦</div>
+          <div class="text-xs">Twitter</div>
+        </div>
+        <div class="platform-card bg-gray-800/40 p-3 rounded-lg text-center cursor-pointer" onclick="selectPlatform('linkedin')">
+          <div class="text-2xl mb-1">💼</div>
+          <div class="text-xs">LinkedIn</div>
+        </div>
+        <div class="platform-card bg-gray-800/40 p-3 rounded-lg text-center cursor-pointer" onclick="selectPlatform('microsoft')">
+          <div class="text-2xl mb-1">🪟</div>
+          <div class="text-xs">Microsoft</div>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center gap-4">
+        <select id="platformSelect" class="w-full sm:w-1/2 p-3 rounded bg-gray-800 border border-gray-700 text-white">
+          <option disabled selected>Select Social Media Platform</option>
+          <option value="facebook">Facebook</option>
+          <option value="instagram">Instagram</option>
+          <option value="gmail">Gmail</option>
+          <option value="twitter">Twitter</option>
+          <option value="linkedin">LinkedIn</option>
+          <option value="snapchat">Snapchat</option>
+          <option value="reddit">Reddit</option>
+          <option value="tiktok">TikTok</option>
+          <option value="pinterest">Pinterest</option>
+          <option value="whatsapp">WhatsApp</option>
+          <option value="github">GitHub</option>
+          <option value="microsoft">Microsoft</option>
+          <option value="steam">Steam</option>
+          <option value="yahoo">Yahoo</option>
+          <option value="netflix">Netflix</option>
+          <option value="paypal">PayPal</option>
+          <option value="discord">Discord</option>
+          <option value="amazon">Amazon</option>
+          <option value="telegram">Telegram</option>
+          <option value="zoom">Zoom</option>
+          <option value="twitch">Twitch</option>
+          <option value="skype">Skype</option>
+          <option value="slack">Slack</option>
+          <option value="dropbox">Dropbox</option>
+          <option value="protonmail">ProtonMail</option>
+          <option value="quora">Quora</option>
+          <option value="tumblr">Tumblr</option>
+          <option value="apple">Apple ID</option>
+          <option value="ebay">eBay</option>
+          <option value="icloud">iCloud</option>
+        </select>
+
+        <button onclick="startLab()" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 px-6 py-3 rounded font-bold flex items-center">
+          Start Lab
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    
+    <section class="bg-gray-900/80 p-6 rounded-xl shadow-lg border border-green-500/30">
+      <h2 class="text-2xl font-semibold mb-4 flex items-center">
+        <span class="inline-flex items-center justify-center w-8 h-8 bg-green-500/20 rounded-full mr-2">
+          🛡️
+        </span>
+        How to Stay Protected
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-gray-800/40 p-4 rounded-lg">
+          <h3 class="font-bold text-green-400 mb-2">✅ Verification</h3>
+          <p class="text-gray-300 text-sm">Always check the URL before entering credentials. Look for HTTPS and the correct domain name.</p>
+        </div>
+        <div class="bg-gray-800/40 p-4 rounded-lg">
+          <h3 class="font-bold text-green-400 mb-2">✅ Two-Factor Authentication</h3>
+          <p class="text-gray-300 text-sm">Enable 2FA on all your accounts to add an extra layer of security.</p>
+        </div>
+        <div class="bg-gray-800/40 p-4 rounded-lg">
+          <h3 class="font-bold text-green-400 mb-2">✅ Email Inspection</h3>
+          <p class="text-gray-300 text-sm">Hover over links to see the actual URL before clicking. Check sender email addresses carefully.</p>
+        </div>
+        <div class="bg-gray-800/40 p-4 rounded-lg">
+          <h3 class="font-bold text-green-400 mb-2">✅ Report Suspicious Emails</h3>
+          <p class="text-gray-300 text-sm">If you receive a suspicious email, report it to your IT department or email provider.</p>
+        </div>
+      </div>
+    </section>
+
+    
+    <footer class="text-center text-gray-400 text-sm pt-8 pb-4">
+      <p>© 2023 CyberScan Phishing Awareness. For educational purposes only.</p>
+    </footer>
+  </div>
+
+  <script>
+    function selectPlatform(platform) {
+      document.getElementById('platformSelect').value = platform;
+    }
+    
+    function startLab() {
+      const platform = document.getElementById("platformSelect").value;
+      if (!platform || platform === "Select Social Media Platform") {
+        alert("Please select a platform to begin the simulation.");
+        return;
+      }
+      window.location.href = `lab/${platform}/login.html`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Device & Network Info – CyberScan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@600;700&display=swap');
+    
+    :root {
+      --primary-glow: rgba(168, 85, 247, 0.5);
+      --warning-glow: rgba(245, 158, 11, 0.5);
+      --success-glow: rgba(16, 185, 129, 0.5);
+      --danger-glow: rgba(239, 68, 68, 0.5);
+    }
+    
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      background-attachment: fixed;
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 10% 20%, rgba(29, 78, 216, 0.15) 0%, transparent 20%),
+        radial-gradient(circle at 90% 70%, rgba(168, 85, 247, 0.1) 0%, transparent 20%);
+      z-index: -1;
+    }
+    
+    .cyber-border {
+      position: relative;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+    }
+    
+    .cyber-border::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      pointer-events: none;
+    }
+    
+    .hacker-text {
+      font-family: 'Orbitron', sans-serif;
+      text-shadow: 0 0 5px rgba(168, 85, 247, 0.7);
+      letter-spacing: 1px;
+    }
+    
+    .terminal-line {
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    
+    .terminal-line::before {
+      content: '>';
+      position: absolute;
+      left: 0.25rem;
+      color: rgb(16, 185, 129);
+      font-weight: bold;
+    }
+    
+    .hex-pattern {
+      background-image: 
+        linear-gradient(rgba(12, 24, 49, 0.9) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(12, 24, 49, 0.9) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    
+    .hacker-terminal {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+      backdrop-filter: blur(5px);
+    }
+    
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+    }
+    
+    .floating {
+      animation: floating 3s ease-in-out infinite;
+    }
+    
+    @keyframes floating {
+      0% { transform: translate(0, 0px); }
+      50% { transform: translate(0, -8px); }
+      100% { transform: translate(0, 0px); }
+    }
+    
+    .info-card {
+      transition: all 0.3s ease;
+    }
+    
+    .info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(168, 85, 247, 0.3);
+    }
+    body {
+      background: url("wallpapers/1.jpg") no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: -1;
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center min-h-screen p-6 gap-8 text-gray-200">
+  <header class="w-full max-w-4xl flex justify-between items-center">
+    <a href="../index.html" class="self-start text-gray-400 hover:text-white">← Back</a>
+    <div class="flex items-center">
+      <div class="w-3 h-3 bg-green-500 rounded-full mr-2 pulse"></div>
+      <span class="text-sm">Secure Session</span>
+    </div>
+  </header>
+
+  <main class="w-full max-w-4xl flex flex-col items-center">
+    <div class="text-center mb-8">
+      <div class="floating inline-block p-3 rounded-full bg-purple-900/20 mb-4">
+        <i class="fas fa-shield-exclamation text-4xl text-red-400"></i>
+      </div>
+      <h1 class="hacker-text text-4xl md:text-5xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-pink-500">
+        DEVICE & NETWORK ANALYSIS
+      </h1>
+      <p class="text-gray-400">Information visible to websites you visit</p>
+    </div>
+
+
+    <div class="hacker-terminal rounded-xl p-6 w-full space-y-8 hex-pattern">
+      <div class="info-card p-5 rounded-lg border border-purple-700/30">
+        <div class="flex items-center mb-4">
+          <i class="fas fa-network-wired text-2xl text-yellow-400 mr-3"></i>
+          <h2 class="text-xl font-semibold text-yellow-400">NETWORK INFORMATION</h2>
+        </div>
+        <ul class="space-y-3 text-gray-200 text-sm">
+          <li class="terminal-line">
+            <strong class="text-cyan-400">IP Address:</strong> 
+            <span id="ip" class="ml-2">Fetching...</span>
+          </li>
+          <li class="terminal-line">
+            <strong class="text-cyan-400">Location:</strong> 
+            <span id="location" class="ml-2">Fetching...</span>
+          </li>
+          <li class="terminal-line">
+            <strong class="text-cyan-400">Timezone:</strong> 
+            <span id="timezone" class="ml-2"></span>
+          </li>
+          <li class="terminal-line">
+            <strong class="text-cyan-400">Online Status:</strong> 
+            <span id="onlineStatus" class="ml-2"></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="info-card p-5 rounded-lg border border-purple-700/30">
+        <div class="flex items-center mb-4">
+          <i class="fas fa-laptop-code text-2xl text-green-400 mr-3"></i>
+          <h2 class="text-xl font-semibold text-green-400">DEVICE INFORMATION</h2>
+        </div>
+        <ul class="space-y-3 text-gray-200 text-sm">
+          <li class="terminal-line">
+            <strong class="text-cyan-400">Platform:</strong> 
+            <span id="platform" class="ml-2"></span>
+          </li>
+          <li class="terminal-line">
+            <strong class="text-cyan-400">Browser:</strong> 
+            <span id="browser" class="ml-2"></span>
+          </li>
+          <li class="terminal-line">
+            <strong class="text-cyan-400">Operating System:</strong> 
+            <span id="os" class="ml-2"></span>
+          </li>
+          <li class="terminal-line">
+            <strong class="text-cyan-400">Device Type:</strong> 
+            <span id="deviceType" class="ml-2"></span>
+          </li>
+          <li class="terminal-line">
+            <strong class="text-cyan-400">Screen Resolution:</strong> 
+            <span id="resolution" class="ml-2"></span>
+          </li>
+          <li class="terminal-line">
+            <strong class="text-cyan-400">Touch Support:</strong> 
+            <span id="touch" class="ml-2"></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="info-card p-5 rounded-lg border border-purple-700/30">
+        <div class="flex items-center mb-4">
+          <i class="fas fa-user-lock text-2xl text-red-400 mr-3"></i>
+          <h2 class="text-xl font-semibold text-red-400">PRIVACY SETTINGS</h2>
+        </div>
+        <ul class="space-y-3 text-gray-200 text-sm">
+          <li class="terminal-line">
+            <strong class="text-cyan-400">Language:</strong> 
+            <span id="language" class="ml-2"></span>
+          </li>
+          <li class="terminal-line">
+            <strong class="text-cyan-400">Cookies:</strong> 
+            <span id="cookies" class="ml-2"></span>
+          </li>
+          <li class="terminal-line">
+            <strong class="text-cyan-400">Do Not Track:</strong> 
+            <span id="dnt" class="ml-2"></span>
+          </li>
+          <li class="terminal-line">
+            <strong class="text-cyan-400">User-Agent:</strong> 
+            <span id="userAgent" class="ml-2 break-words block mt-1 text-xs"></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hacker-terminal mt-8 max-w-2xl p-4 text-center text-gray-400 text-sm leading-relaxed">
+      <div class="flex items-center justify-center mb-2">
+        <i class="fas fa-exclamation-triangle text-red-400 mr-2"></i>
+        <span class="text-red-400 font-semibold">SECURITY NOTICE:</span>
+      </div>
+      <p>This is an educational demonstration of information visible to websites.</p>
+      <p>No data is stored, logged, or transmitted from this page.</p>
+    </div>
+  </main>
+
+  <script>
+    function getBrowserInfo() {
+      const ua = navigator.userAgent;
+      if (ua.indexOf("Chrome") !== -1) return "Chrome 🌐";
+      if (ua.indexOf("Firefox") !== -1) return "Firefox 🦊";
+      if (ua.indexOf("Safari") !== -1 && ua.indexOf("Chrome") === -1) return "Safari 🍎";
+      if (ua.indexOf("Edge") !== -1) return "Edge 🪟";
+      if (ua.indexOf("OPR") !== -1) return "Opera 🎭";
+      return "Unknown";
+    }
+
+    function getDeviceType() {
+      if (/Mobi|Android/i.test(navigator.userAgent)) return "Mobile 📱";
+      if (/Tablet|iPad/i.test(navigator.userAgent)) return "Tablet 📟";
+      return "Desktop 💻";
+    }
+    document.getElementById("platform").textContent = navigator.userAgentData?.platform || navigator.platform;
+    document.getElementById("browser").textContent = getBrowserInfo();
+    document.getElementById("os").textContent = navigator.platform;
+    document.getElementById("userAgent").textContent = navigator.userAgent;
+    document.getElementById("resolution").textContent = `${window.screen.width} x ${window.screen.height}`;
+    document.getElementById("deviceType").textContent = getDeviceType();
+    document.getElementById("language").textContent = navigator.language || navigator.userLanguage;
+    document.getElementById("timezone").textContent = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    document.getElementById("cookies").textContent = navigator.cookieEnabled ? "Enabled ✅" : "Disabled ❌";
+    document.getElementById("onlineStatus").textContent = navigator.onLine ? "Online ✅" : "Offline ❌";
+    document.getElementById("touch").textContent = "ontouchstart" in window ? "Yes (Touch Supported) 👆" : "No";
+    document.getElementById("dnt").textContent = navigator.doNotTrack == "1" ? "Enabled 🚫" : "Disabled";
+
+    fetch("https://ipapi.co/json/")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("ip").textContent = data.ip;
+        document.getElementById("location").textContent = `${data.city}, ${data.region}, ${data.country_name}`;
+      })
+      .catch(() => {
+        document.getElementById("ip").textContent = "Unavailable 🔒";
+        document.getElementById("location").textContent = "Unavailable 🔒";
+      });
+  </script>
+</body>
+</html>

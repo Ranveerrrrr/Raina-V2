@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Email Breach Check – CyberScan</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body {
+    background: radial-gradient(circle at top left, #0f0f1e, #000000);
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  
+  @keyframes flicker-fast {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; filter: brightness(1); }
+    20%, 22%, 24%, 55% { opacity: 0.85; filter: brightness(0.7); }
+  }
+
+  
+  .flicker {
+    animation: flicker-fast 0.3s forwards; 
+    animation-iteration-count: infinite;
+    animation-delay: 5s; 
+  }
+
+  
+  .flicker-1 { animation-delay: 0s, 5s; }
+  .flicker-2 { animation-delay: 1s, 5s; }
+  .flicker-3 { animation-delay: 2s, 5s; }
+  .flicker-4 { animation-delay: 3s, 5s; }
+
+  .card {
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,255,255,0.3);
+  }
+
+  .btn-neon {
+    background: linear-gradient(90deg, #06b6d4, #3b82f6);
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 5px #06b6d4, 0 0 10px #3b82f6;
+  }
+  .btn-neon:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 8px #06b6d4, 0 0 16px #3b82f6;
+  }
+
+  .neon-heading {
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    text-align: center;
+    color: #0ff;
+    text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff;
+  }
+
+  .input-field {
+    background: rgba(0,0,0,0.6);
+    color: white;
+    font-weight: bold;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid #06b6d4;
+    transition: 0.3s all;
+  }
+  .input-field:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 10px #06b6d4, 0 0 20px #3b82f6;
+    background: rgba(0,0,0,0.8);
+  }
+
+
+  body {
+      background: url("wallpapers/8.jpg") no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.7); 
+      z-index: -1;
+    }
+
+</style>
+</head>
+<body class="flex flex-col items-center min-h-screen p-6 gap-8 text-white">
+    <a href="../index.html" class="self-start text-gray-400 hover:text-white">← Back</a>
+
+  
+  <div class="flex flex-col items-center gap-4 flicker flicker-1">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-cyan-400 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m0 0v10a2 2 0 01-2 2H5a2 2 0 01-2-2V8m18 0L12 13 3 8"/>
+    </svg>
+    <h1 class="neon-heading">Email Breach Check</h1>
+  </div>
+
+  <div class="w-full max-w-xl p-6 bg-gray-900/70 card rounded-3xl flex flex-col gap-6 shadow-lg flicker flicker-2">
+    <input 
+      id="emailInput" 
+      type="email" 
+      placeholder="Enter email address" 
+      class="input-field flicker flicker-3"
+    />
+    <button 
+      onclick="checkEmail()" 
+      class="btn-neon px-6 py-3 rounded-xl text-lg flicker flicker-4"
+    >
+      Scan Now
+    </button>
+
+    <div id="emailResult" class="min-h-[2rem] text-lg font-bold text-cyan-300 flicker flicker-1"></div>
+    <div id="prettyBox" class="mt-4 p-4 bg-gray-800/80 rounded-xl hidden text-white/90 border border-cyan-400 shadow-lg flicker flicker-2"></div>
+  </div>
+
+  <script>
+    function checkEmail() {
+      const email = document.getElementById("emailInput").value.trim();
+      const resultElem = document.getElementById("emailResult");
+      const prettyBox = document.getElementById("prettyBox");
+
+      if (!email) {
+        resultElem.innerText = "❌ Please enter an email.";
+        prettyBox.classList.add("hidden");
+        return;
+      }
+
+      const hibpUrl = `https://haveibeenpwned.com/unifiedsearch/${encodeURIComponent(email)}`;
+
+      prettyBox.innerHTML = `
+        <h3 class="text-xl font-bold text-cyan-400">🔗 HIBP Link</h3>
+        <p class="mt-2 text-gray-300">Click the link below to view breach information:</p>
+        <a href="${hibpUrl}" target="_blank" class="text-yellow-400 font-semibold break-all hover:underline">${hibpUrl}</a>
+      `;
+      prettyBox.classList.remove("hidden");
+
+      resultElem.innerText = "✅ Link generated below!";
+    }
+  </script>
+
+</body>
+</html>

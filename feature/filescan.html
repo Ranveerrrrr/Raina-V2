@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File / Link Malware Scan – Raina</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .transition-theme {
+      transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .loader {
+      border: 4px solid rgba(255,255,255,0.2);
+      border-top: 4px solid #38bdf8;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: auto;
+    }
+
+    
+    body {
+      background: url("wallpapers/1.jpg") no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.7); 
+      z-index: -1;
+    }
+  </style>
+</head>
+<body id="body" class="text-white flex flex-col items-center min-h-screen p-6 gap-6 font-mono transition-theme relative">
+
+  <a href="../index.html" class="self-start text-gray-400 hover:text-white">← Back</a>
+
+  <div class="text-center">
+    <h2 class="text-4xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-400 bg-clip-text text-transparent">
+      🗂️ File / Link Malware Scan
+    </h2>
+    <p class="text-gray-300 mt-2 max-w-2xl">
+      Paste a <span class="text-yellow-400">direct download link</span> to check if it’s flagged by multiple antivirus engines.
+    </p>
+  </div>
+
+  <div id="infoBox" class="bg-gray-800/80 text-sm p-4 rounded-xl max-w-2xl text-gray-200 shadow-md transition-theme">
+    <p>🔗 Example: <code class="text-purple-300">http://example.com/file.exe</code></p>
+    <p class="mt-1">⚡ Fast multi-engine scan via <span class="text-cyan-400">Raina backend</span>.</p>
+  </div>
+
+  <div class="w-full max-w-xl flex flex-col gap-4">
+    <input id="linkInput" type="url" placeholder="Paste file download URL" class="p-3 rounded-xl text-black focus:ring-4 focus:ring-purple-400 outline-none" />
+    <button onclick="scanLink()" id="scanBtn" class="bg-purple-600 hover:bg-purple-700 py-3 rounded-xl shadow-lg font-semibold transition-theme">
+      🚀 Scan Now
+    </button>
+    <div id="linkResult" class="text-lg font-bold min-h-[2rem] text-center"></div>
+  </div>
+
+  <div id="loader" class="hidden loader"></div>
+
+  <div id="detailsBox" class="hidden w-full max-w-2xl mt-4 bg-gray-800/80 text-white p-4 rounded-xl shadow-lg space-y-2 transition-all duration-500 transform scale-95 opacity-0"></div>
+
+  <div class="w-full max-w-xl bg-gray-900/80 p-4 rounded-xl shadow-md mt-6">
+    <h2 class="text-lg font-semibold mb-2">🕓 Last 5 Scans</h2>
+    <ul id="historyList" class="list-disc list-inside text-gray-300 space-y-1"></ul>
+  </div>
+
+  <p class="text-gray-400 text-sm mt-6">⚠️ For educational purposes only. We don’t store scanned data.</p>
+
+  <script>
+    const BACKEND_URL = 'https://ai-cyber-backend-1.onrender.com/scan';
+
+    function setThemeSafe() {
+      document.getElementById('body').className = 'text-white flex flex-col items-center min-h-screen p-6 gap-6 font-mono transition-theme relative bg-green-950/40';
+      document.getElementById('scanBtn').className = 'bg-green-600 hover:bg-green-700 py-3 rounded-xl shadow-lg font-semibold transition-theme';
+      document.getElementById('infoBox').className = 'bg-green-900/80 text-sm p-4 rounded-xl max-w-2xl text-green-200 shadow-md transition-theme';
+      document.getElementById('detailsBox').className = 'w-full max-w-2xl mt-4 bg-green-900/80 text-white p-4 rounded-xl shadow-lg space-y-2 transition-all duration-500 opacity-100 scale-100';
+    }
+
+    function setThemeUnsafe() {
+      document.getElementById('body').className = 'text-white flex flex-col items-center min-h-screen p-6 gap-6 font-mono transition-theme relative bg-red-950/40';
+      document.getElementById('scanBtn').className = 'bg-red-600 hover:bg-red-700 py-3 rounded-xl shadow-lg font-semibold transition-theme';
+      document.getElementById('infoBox').className = 'bg-red-900/80 text-sm p-4 rounded-xl max-w-2xl text-red-200 shadow-md transition-theme';
+      document.getElementById('detailsBox').className = 'w-full max-w-2xl mt-4 bg-red-900/80 text-white p-4 rounded-xl shadow-lg space-y-2 transition-all duration-500 opacity-100 scale-100';
+    }
+
+    function resetTheme() {
+      document.getElementById('body').className = 'text-white flex flex-col items-center min-h-screen p-6 gap-6 font-mono transition-theme relative';
+      document.getElementById('scanBtn').className = 'bg-purple-600 hover:bg-purple-700 py-3 rounded-xl shadow-lg font-semibold transition-theme';
+      document.getElementById('infoBox').className = 'bg-gray-800/80 text-sm p-4 rounded-xl max-w-2xl text-gray-200 shadow-md transition-theme';
+      document.getElementById('detailsBox').className = 'w-full max-w-2xl mt-4 bg-gray-800/80 text-white p-4 rounded-xl shadow-lg space-y-2 transition-all duration-500 opacity-0 scale-95 hidden';
+    }
+
+    async function scanLink() {
+      const url = document.getElementById('linkInput').value.trim();
+      const resEl = document.getElementById('linkResult');
+      const detailsEl = document.getElementById('detailsBox');
+      const loaderEl = document.getElementById('loader');
+
+      resetTheme();
+      detailsEl.classList.add('hidden');
+      detailsEl.innerHTML = '';
+      resEl.textContent = '';
+
+      if (!url) {
+        resEl.textContent = '⚠️ Please enter a URL.';
+        resEl.className = 'text-yellow-400 font-bold text-center';
+        return;
+      }
+
+      resEl.textContent = '⏳ Scanning...';
+      resEl.className = 'text-white font-bold text-center';
+      loaderEl.classList.remove('hidden');
+
+      try {
+        const response = await fetch(BACKEND_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url })
+        });
+
+        loaderEl.classList.add('hidden');
+        if (!response.ok) throw new Error('Server error');
+
+        const data = await response.json();
+        const stats = data.data.attributes.stats;
+        const total = stats.malicious + stats.suspicious;
+
+        if (total > 0) {
+          resEl.textContent = `⚠️ Detected as malicious by ${total} engine(s)!`;
+          resEl.className = 'text-red-400 font-bold text-center';
+          setThemeUnsafe();
+
+          detailsEl.innerHTML = `
+            <p><strong>🧪 Engines flagged:</strong> ${total}</p>
+            <p><strong>🛑 Malicious:</strong> ${stats.malicious}</p>
+            <p><strong>⚠️ Suspicious:</strong> ${stats.suspicious}</p>
+            <p><strong>🔗 URL scanned:</strong> ${url}</p>
+          `;
+        } else {
+          resEl.textContent = '✅ No engines flagged this URL.';
+          resEl.className = 'text-green-400 font-bold text-center';
+          setThemeSafe();
+
+          detailsEl.innerHTML = `
+            <p><strong>✅ Clean result:</strong> ${url}</p>
+            <p>Scanned across multiple engines. No malware detected.</p>
+          `;
+        }
+
+        detailsEl.classList.remove('hidden');
+
+        saveHistory(url, total);
+
+      } catch (err) {
+        loaderEl.classList.add('hidden');
+        console.error('Scan failed:', err);
+        resEl.textContent = '❌ Error scanning the URL.';
+        resEl.className = 'text-red-400 font-bold text-center';
+      }
+    }
+
+    function saveHistory(url, detections) {
+      let history = JSON.parse(localStorage.getItem("scanHistory")) || [];
+      history.unshift({ url, detections, time: new Date().toLocaleTimeString() });
+      if (history.length > 5) history = history.slice(0, 5);
+      localStorage.setItem("scanHistory", JSON.stringify(history));
+      loadHistory();
+    }
+
+    function loadHistory() {
+      const history = JSON.parse(localStorage.getItem("scanHistory")) || [];
+      const list = document.getElementById("historyList");
+      list.innerHTML = "";
+      history.forEach(item => {
+        const li = document.createElement("li");
+        li.innerHTML = `<span class="text-purple-300">${item.url}</span> — <span class="text-${item.detections > 0 ? 'red' : 'green'}-400">${item.detections > 0 ? item.detections + " detections" : "Clean"}</span> <span class="text-gray-400">(${item.time})</span>`;
+        list.appendChild(li);
+      });
+    }
+
+    loadHistory();
+  </script>
+</body>
+</html>
