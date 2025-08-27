@@ -4,7 +4,7 @@
 
 The platform is a **web-based toolkit** built with **HTML, Tailwind CSS, and JavaScript**, focusing on simplicity and usability. It provides multiple tools that simulate real-world cybersecurity practices while being safe and educational.  
 
----
+-----
 
 ## 🔑 Key Features
 - 🗂️ **File / Link Malware Scan** – Verify links against VirusTotal for malware detection.  
