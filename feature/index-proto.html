@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberScan – School Project by Ranveer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-white font-sans min-h-screen flex flex-col items-center px-4 py-8 gap-10">
+
+  <!-- Header -->
+  <header class="text-center max-w-2xl">
+    <h1 class="text-4xl sm:text-5xl font-bold text-purple-400 mb-4">👋 Welcome to CyberScan</h1>
+    <p class="text-lg text-gray-300">
+      This is a <span class="text-green-400 font-semibold">school project</span> coded and hosted by <span class="text-yellow-400 font-bold">Ranveer</span>.
+      <br>Explore tools for phishing awareness, cybersecurity, and OSINT basics.
+    </p>
+  </header>
+
+  <!-- Tools Grid -->
+  <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
+
+    <!-- 1. File / Link Malware Scan -->
+    <a href="filescan.html" class="bg-gray-800 hover:bg-purple-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-purple-400 group-hover:text-white">🗂️ File / Link Malware Scan</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Scan a downloadable file link using VirusTotal to check if it’s malicious.</p>
+    </a>
+
+    <!-- 2. URL Safety Check -->
+    <a href="urlscan.html" class="bg-gray-800 hover:bg-green-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-green-400 group-hover:text-white">🔗 URL Safety Check</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Verify if a website is flagged as unsafe by Google Safe Browsing.</p>
+    </a>
+
+    <!-- 3. Password Leak Checker -->
+    <a href="passwordcheck.html" class="bg-gray-800 hover:bg-red-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-red-400 group-hover:text-white">🔑 Password Leak Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your password appeared in known data breaches.</p>
+    </a>
+
+    <!-- 4. Phishing Awareness Lab -->
+    <a href="aware-phish.html" class="bg-gray-800 hover:bg-yellow-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-yellow-400 group-hover:text-white">🎣 Phishing Awareness</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Learn how phishing works and try an interactive phishing simulation.</p>
+    </a>
+
+    <!-- 5. Device Info -->
+    <a href="device-info.html" class="bg-gray-800 hover:bg-blue-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-blue-400 group-hover:text-white">💻 Device Info</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See what details your browser leaks — user agent, platform, and more.</p>
+    </a>
+
+    <!-- 6. Email Breach Checker -->
+    <a href="email-check.html" class="bg-gray-800 hover:bg-pink-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-pink-400 group-hover:text-white">📧 Email Breach Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your email was involved in any public data breach.</p>
+    </a>
+
+    <!-- 7. Hash Generator -->
+    <a href="hash-generator.html" class="bg-gray-800 hover:bg-indigo-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-indigo-400 group-hover:text-white">🔐 Hash Generator</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Generate MD5, SHA-1, and SHA-256 hashes from your input.</p>
+    </a>
+
+    <!-- 8. IP Lookup -->
+    <a href="ip-lookup.html" class="bg-gray-800 hover:bg-orange-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-orange-400 group-hover:text-white">🌍 IP Lookup</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check IP address details like location, ISP, and geodata.</p>
+    </a>
+
+    <!-- 9. Link Analyzer -->
+    <a href="link-analyzer.html" class="bg-gray-800 hover:bg-lime-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-lime-400 group-hover:text-white">🔍 Link Analyzer</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Get full redirection paths, shortened links, and headers.</p>
+    </a>
+
+    <!-- 10. Password Strength Checker -->
+    <a href="password-strength.html" class="bg-gray-800 hover:bg-teal-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-teal-400 group-hover:text-white">🧠 Password Strength</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See how strong your password is and get suggestions.</p>
+    </a>
+
+    <!-- 11. QR Decoder -->
+    <a href="qr-decoder.html" class="bg-gray-800 hover:bg-cyan-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-cyan-400 group-hover:text-white">📷 QR Code Decoder</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Upload a QR image and extract the encoded URL or message.</p>
+    </a>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-sm text-gray-500 mt-12">
+    © 2025 CyberScan by Ranveer • Made with ❤️ for school
+  </footer>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberScan – School Project by Ranveer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-white font-sans min-h-screen flex flex-col items-center px-4 py-8 gap-10">
+
+  <!-- Header -->
+  <header class="text-center max-w-2xl">
+    <h1 class="text-4xl sm:text-5xl font-bold text-purple-400 mb-4">👋 Welcome to CyberScan</h1>
+    <p class="text-lg text-gray-300">
+      This is a <span class="text-green-400 font-semibold">school project</span> coded and hosted by <span class="text-yellow-400 font-bold">Ranveer</span>.
+      <br>Explore tools for phishing awareness, cybersecurity, and OSINT basics.
+    </p>
+  </header>
+
+  <!-- Tools Grid -->
+  <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
+
+    <!-- 1. File / Link Malware Scan -->
+    <a href="filescan.html" class="bg-gray-800 hover:bg-purple-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-purple-400 group-hover:text-white">🗂️ File / Link Malware Scan</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Scan a downloadable file link using VirusTotal to check if it’s malicious.</p>
+    </a>
+
+    <!-- 2. URL Safety Check -->
+    <a href="urlscan.html" class="bg-gray-800 hover:bg-green-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-green-400 group-hover:text-white">🔗 URL Safety Check</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Verify if a website is flagged as unsafe by Google Safe Browsing.</p>
+    </a>
+
+    <!-- 3. Password Leak Checker -->
+    <a href="passwordcheck.html" class="bg-gray-800 hover:bg-red-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-red-400 group-hover:text-white">🔑 Password Leak Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your password appeared in known data breaches.</p>
+    </a>
+
+    <!-- 4. Phishing Awareness Lab -->
+    <a href="aware-phish.html" class="bg-gray-800 hover:bg-yellow-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-yellow-400 group-hover:text-white">🎣 Phishing Awareness</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Learn how phishing works and try an interactive phishing simulation.</p>
+    </a>
+
+    <!-- 5. Device Info -->
+    <a href="device-info.html" class="bg-gray-800 hover:bg-blue-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-blue-400 group-hover:text-white">💻 Device Info</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See what details your browser leaks — user agent, platform, and more.</p>
+    </a>
+
+    <!-- 6. Email Breach Checker -->
+    <a href="email-check.html" class="bg-gray-800 hover:bg-pink-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-pink-400 group-hover:text-white">📧 Email Breach Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your email was involved in any public data breach.</p>
+    </a>
+
+    <!-- 7. Hash Generator -->
+    <a href="hash-generator.html" class="bg-gray-800 hover:bg-indigo-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-indigo-400 group-hover:text-white">🔐 Hash Generator</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Generate MD5, SHA-1, and SHA-256 hashes from your input.</p>
+    </a>
+
+    <!-- 8. IP Lookup -->
+    <a href="ip-lookup.html" class="bg-gray-800 hover:bg-orange-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-orange-400 group-hover:text-white">🌍 IP Lookup</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check IP address details like location, ISP, and geodata.</p>
+    </a>
+
+    <!-- 9. Link Analyzer -->
+    <a href="link-analyzer.html" class="bg-gray-800 hover:bg-lime-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-lime-400 group-hover:text-white">🔍 Link Analyzer</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Get full redirection paths, shortened links, and headers.</p>
+    </a>
+
+    <!-- 10. Password Strength Checker -->
+    <a href="password-strength.html" class="bg-gray-800 hover:bg-teal-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-teal-400 group-hover:text-white">🧠 Password Strength</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See how strong your password is and get suggestions.</p>
+    </a>
+
+    <!-- 11. QR Decoder -->
+    <a href="qr-decoder.html" class="bg-gray-800 hover:bg-cyan-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-cyan-400 group-hover:text-white">📷 QR Code Decoder</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Upload a QR image and extract the encoded URL or message.</p>
+    </a>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-sm text-gray-500 mt-12">
+    © 2025 CyberScan by Ranveer • Made with ❤️ for school
+  </footer>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberScan – School Project by Ranveer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-white font-sans min-h-screen flex flex-col items-center px-4 py-8 gap-10">
+
+  <!-- Header -->
+  <header class="text-center max-w-2xl">
+    <h1 class="text-4xl sm:text-5xl font-bold text-purple-400 mb-4">👋 Welcome to CyberScan</h1>
+    <p class="text-lg text-gray-300">
+      This is a <span class="text-green-400 font-semibold">school project</span> coded and hosted by <span class="text-yellow-400 font-bold">Ranveer</span>.
+      <br>Explore tools for phishing awareness, cybersecurity, and OSINT basics.
+    </p>
+  </header>
+
+  <!-- Tools Grid -->
+  <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
+
+    <!-- 1. File / Link Malware Scan -->
+    <a href="filescan.html" class="bg-gray-800 hover:bg-purple-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-purple-400 group-hover:text-white">🗂️ File / Link Malware Scan</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Scan a downloadable file link using VirusTotal to check if it’s malicious.</p>
+    </a>
+
+    <!-- 2. URL Safety Check -->
+    <a href="urlscan.html" class="bg-gray-800 hover:bg-green-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-green-400 group-hover:text-white">🔗 URL Safety Check</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Verify if a website is flagged as unsafe by Google Safe Browsing.</p>
+    </a>
+
+    <!-- 3. Password Leak Checker -->
+    <a href="passwordcheck.html" class="bg-gray-800 hover:bg-red-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-red-400 group-hover:text-white">🔑 Password Leak Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your password appeared in known data breaches.</p>
+    </a>
+
+    <!-- 4. Phishing Awareness Lab -->
+    <a href="aware-phish.html" class="bg-gray-800 hover:bg-yellow-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-yellow-400 group-hover:text-white">🎣 Phishing Awareness</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Learn how phishing works and try an interactive phishing simulation.</p>
+    </a>
+
+    <!-- 5. Device Info -->
+    <a href="device-info.html" class="bg-gray-800 hover:bg-blue-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-blue-400 group-hover:text-white">💻 Device Info</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See what details your browser leaks — user agent, platform, and more.</p>
+    </a>
+
+    <!-- 6. Email Breach Checker -->
+    <a href="email-check.html" class="bg-gray-800 hover:bg-pink-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-pink-400 group-hover:text-white">📧 Email Breach Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your email was involved in any public data breach.</p>
+    </a>
+
+    <!-- 7. Hash Generator -->
+    <a href="hash-generator.html" class="bg-gray-800 hover:bg-indigo-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-indigo-400 group-hover:text-white">🔐 Hash Generator</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Generate MD5, SHA-1, and SHA-256 hashes from your input.</p>
+    </a>
+
+    <!-- 8. IP Lookup -->
+    <a href="ip-lookup.html" class="bg-gray-800 hover:bg-orange-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-orange-400 group-hover:text-white">🌍 IP Lookup</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check IP address details like location, ISP, and geodata.</p>
+    </a>
+
+    <!-- 9. Link Analyzer -->
+    <a href="link-analyzer.html" class="bg-gray-800 hover:bg-lime-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-lime-400 group-hover:text-white">🔍 Link Analyzer</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Get full redirection paths, shortened links, and headers.</p>
+    </a>
+
+    <!-- 10. Password Strength Checker -->
+    <a href="password-strength.html" class="bg-gray-800 hover:bg-teal-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-teal-400 group-hover:text-white">🧠 Password Strength</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See how strong your password is and get suggestions.</p>
+    </a>
+
+    <!-- 11. QR Decoder -->
+    <a href="qr-decoder.html" class="bg-gray-800 hover:bg-cyan-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-cyan-400 group-hover:text-white">📷 QR Code Decoder</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Upload a QR image and extract the encoded URL or message.</p>
+    </a>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-sm text-gray-500 mt-12">
+    © 2025 CyberScan by Ranveer • Made with ❤️ for school
+  </footer>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberScan – School Project by Ranveer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-white font-sans min-h-screen flex flex-col items-center px-4 py-8 gap-10">
+
+  <!-- Header -->
+  <header class="text-center max-w-2xl">
+    <h1 class="text-4xl sm:text-5xl font-bold text-purple-400 mb-4">👋 Welcome to CyberScan</h1>
+    <p class="text-lg text-gray-300">
+      This is a <span class="text-green-400 font-semibold">school project</span> coded and hosted by <span class="text-yellow-400 font-bold">Ranveer</span>.
+      <br>Explore tools for phishing awareness, cybersecurity, and OSINT basics.
+    </p>
+  </header>
+
+  <!-- Tools Grid -->
+  <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
+
+    <!-- 1. File / Link Malware Scan -->
+    <a href="filescan.html" class="bg-gray-800 hover:bg-purple-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-purple-400 group-hover:text-white">🗂️ File / Link Malware Scan</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Scan a downloadable file link using VirusTotal to check if it’s malicious.</p>
+    </a>
+
+    <!-- 2. URL Safety Check -->
+    <a href="urlscan.html" class="bg-gray-800 hover:bg-green-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-green-400 group-hover:text-white">🔗 URL Safety Check</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Verify if a website is flagged as unsafe by Google Safe Browsing.</p>
+    </a>
+
+    <!-- 3. Password Leak Checker -->
+    <a href="passwordcheck.html" class="bg-gray-800 hover:bg-red-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-red-400 group-hover:text-white">🔑 Password Leak Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your password appeared in known data breaches.</p>
+    </a>
+
+    <!-- 4. Phishing Awareness Lab -->
+    <a href="aware-phish.html" class="bg-gray-800 hover:bg-yellow-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-yellow-400 group-hover:text-white">🎣 Phishing Awareness</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Learn how phishing works and try an interactive phishing simulation.</p>
+    </a>
+
+    <!-- 5. Device Info -->
+    <a href="device-info.html" class="bg-gray-800 hover:bg-blue-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-blue-400 group-hover:text-white">💻 Device Info</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See what details your browser leaks — user agent, platform, and more.</p>
+    </a>
+
+    <!-- 6. Email Breach Checker -->
+    <a href="email-check.html" class="bg-gray-800 hover:bg-pink-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-pink-400 group-hover:text-white">📧 Email Breach Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your email was involved in any public data breach.</p>
+    </a>
+
+    <!-- 7. Hash Generator -->
+    <a href="hash-generator.html" class="bg-gray-800 hover:bg-indigo-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-indigo-400 group-hover:text-white">🔐 Hash Generator</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Generate MD5, SHA-1, and SHA-256 hashes from your input.</p>
+    </a>
+
+    <!-- 8. IP Lookup -->
+    <a href="ip-lookup.html" class="bg-gray-800 hover:bg-orange-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-orange-400 group-hover:text-white">🌍 IP Lookup</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check IP address details like location, ISP, and geodata.</p>
+    </a>
+
+    <!-- 9. Link Analyzer -->
+    <a href="link-analyzer.html" class="bg-gray-800 hover:bg-lime-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-lime-400 group-hover:text-white">🔍 Link Analyzer</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Get full redirection paths, shortened links, and headers.</p>
+    </a>
+
+    <!-- 10. Password Strength Checker -->
+    <a href="password-strength.html" class="bg-gray-800 hover:bg-teal-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-teal-400 group-hover:text-white">🧠 Password Strength</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See how strong your password is and get suggestions.</p>
+    </a>
+
+    <!-- 11. QR Decoder -->
+    <a href="qr-decoder.html" class="bg-gray-800 hover:bg-cyan-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-cyan-400 group-hover:text-white">📷 QR Code Decoder</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Upload a QR image and extract the encoded URL or message.</p>
+    </a>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-sm text-gray-500 mt-12">
+    © 2025 CyberScan by Ranveer • Made with ❤️ for school
+  </footer>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberScan – School Project by Ranveer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-white font-sans min-h-screen flex flex-col items-center px-4 py-8 gap-10">
+
+  <!-- Header -->
+  <header class="text-center max-w-2xl">
+    <h1 class="text-4xl sm:text-5xl font-bold text-purple-400 mb-4">👋 Welcome to CyberScan</h1>
+    <p class="text-lg text-gray-300">
+      This is a <span class="text-green-400 font-semibold">school project</span> coded and hosted by <span class="text-yellow-400 font-bold">Ranveer</span>.
+      <br>Explore tools for phishing awareness, cybersecurity, and OSINT basics.
+    </p>
+  </header>
+
+  <!-- Tools Grid -->
+  <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
+
+    <!-- 1. File / Link Malware Scan -->
+    <a href="filescan.html" class="bg-gray-800 hover:bg-purple-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-purple-400 group-hover:text-white">🗂️ File / Link Malware Scan</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Scan a downloadable file link using VirusTotal to check if it’s malicious.</p>
+    </a>
+
+    <!-- 2. URL Safety Check -->
+    <a href="urlscan.html" class="bg-gray-800 hover:bg-green-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-green-400 group-hover:text-white">🔗 URL Safety Check</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Verify if a website is flagged as unsafe by Google Safe Browsing.</p>
+    </a>
+
+    <!-- 3. Password Leak Checker -->
+    <a href="passwordcheck.html" class="bg-gray-800 hover:bg-red-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-red-400 group-hover:text-white">🔑 Password Leak Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your password appeared in known data breaches.</p>
+    </a>
+
+    <!-- 4. Phishing Awareness Lab -->
+    <a href="aware-phish.html" class="bg-gray-800 hover:bg-yellow-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-yellow-400 group-hover:text-white">🎣 Phishing Awareness</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Learn how phishing works and try an interactive phishing simulation.</p>
+    </a>
+
+    <!-- 5. Device Info -->
+    <a href="device-info.html" class="bg-gray-800 hover:bg-blue-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-blue-400 group-hover:text-white">💻 Device Info</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See what details your browser leaks — user agent, platform, and more.</p>
+    </a>
+
+    <!-- 6. Email Breach Checker -->
+    <a href="email-check.html" class="bg-gray-800 hover:bg-pink-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-pink-400 group-hover:text-white">📧 Email Breach Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your email was involved in any public data breach.</p>
+    </a>
+
+    <!-- 7. Hash Generator -->
+    <a href="hash-generator.html" class="bg-gray-800 hover:bg-indigo-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-indigo-400 group-hover:text-white">🔐 Hash Generator</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Generate MD5, SHA-1, and SHA-256 hashes from your input.</p>
+    </a>
+
+    <!-- 8. IP Lookup -->
+    <a href="ip-lookup.html" class="bg-gray-800 hover:bg-orange-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-orange-400 group-hover:text-white">🌍 IP Lookup</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check IP address details like location, ISP, and geodata.</p>
+    </a>
+
+    <!-- 9. Link Analyzer -->
+    <a href="link-analyzer.html" class="bg-gray-800 hover:bg-lime-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-lime-400 group-hover:text-white">🔍 Link Analyzer</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Get full redirection paths, shortened links, and headers.</p>
+    </a>
+
+    <!-- 10. Password Strength Checker -->
+    <a href="password-strength.html" class="bg-gray-800 hover:bg-teal-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-teal-400 group-hover:text-white">🧠 Password Strength</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See how strong your password is and get suggestions.</p>
+    </a>
+
+    <!-- 11. QR Decoder -->
+    <a href="qr-decoder.html" class="bg-gray-800 hover:bg-cyan-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-cyan-400 group-hover:text-white">📷 QR Code Decoder</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Upload a QR image and extract the encoded URL or message.</p>
+    </a>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-sm text-gray-500 mt-12">
+    © 2025 CyberScan by Ranveer • Made with ❤️ for school
+  </footer>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberScan – School Project by Ranveer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-white font-sans min-h-screen flex flex-col items-center px-4 py-8 gap-10">
+
+  <!-- Header -->
+  <header class="text-center max-w-2xl">
+    <h1 class="text-4xl sm:text-5xl font-bold text-purple-400 mb-4">👋 Welcome to CyberScan</h1>
+    <p class="text-lg text-gray-300">
+      This is a <span class="text-green-400 font-semibold">school project</span> coded and hosted by <span class="text-yellow-400 font-bold">Ranveer</span>.
+      <br>Explore tools for phishing awareness, cybersecurity, and OSINT basics.
+    </p>
+  </header>
+
+  <!-- Tools Grid -->
+  <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
+
+    <!-- 1. File / Link Malware Scan -->
+    <a href="filescan.html" class="bg-gray-800 hover:bg-purple-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-purple-400 group-hover:text-white">🗂️ File / Link Malware Scan</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Scan a downloadable file link using VirusTotal to check if it’s malicious.</p>
+    </a>
+
+    <!-- 2. URL Safety Check -->
+    <a href="urlscan.html" class="bg-gray-800 hover:bg-green-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-green-400 group-hover:text-white">🔗 URL Safety Check</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Verify if a website is flagged as unsafe by Google Safe Browsing.</p>
+    </a>
+
+    <!-- 3. Password Leak Checker -->
+    <a href="passwordcheck.html" class="bg-gray-800 hover:bg-red-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-red-400 group-hover:text-white">🔑 Password Leak Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your password appeared in known data breaches.</p>
+    </a>
+
+    <!-- 4. Phishing Awareness Lab -->
+    <a href="aware-phish.html" class="bg-gray-800 hover:bg-yellow-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-yellow-400 group-hover:text-white">🎣 Phishing Awareness</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Learn how phishing works and try an interactive phishing simulation.</p>
+    </a>
+
+    <!-- 5. Device Info -->
+    <a href="device-info.html" class="bg-gray-800 hover:bg-blue-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-blue-400 group-hover:text-white">💻 Device Info</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See what details your browser leaks — user agent, platform, and more.</p>
+    </a>
+
+    <!-- 6. Email Breach Checker -->
+    <a href="email-check.html" class="bg-gray-800 hover:bg-pink-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-pink-400 group-hover:text-white">📧 Email Breach Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your email was involved in any public data breach.</p>
+    </a>
+
+    <!-- 7. Hash Generator -->
+    <a href="hash-generator.html" class="bg-gray-800 hover:bg-indigo-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-indigo-400 group-hover:text-white">🔐 Hash Generator</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Generate MD5, SHA-1, and SHA-256 hashes from your input.</p>
+    </a>
+
+    <!-- 8. IP Lookup -->
+    <a href="ip-lookup.html" class="bg-gray-800 hover:bg-orange-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-orange-400 group-hover:text-white">🌍 IP Lookup</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check IP address details like location, ISP, and geodata.</p>
+    </a>
+
+    <!-- 9. Link Analyzer -->
+    <a href="link-analyzer.html" class="bg-gray-800 hover:bg-lime-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-lime-400 group-hover:text-white">🔍 Link Analyzer</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Get full redirection paths, shortened links, and headers.</p>
+    </a>
+
+    <!-- 10. Password Strength Checker -->
+    <a href="password-strength.html" class="bg-gray-800 hover:bg-teal-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-teal-400 group-hover:text-white">🧠 Password Strength</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See how strong your password is and get suggestions.</p>
+    </a>
+
+    <!-- 11. QR Decoder -->
+    <a href="qr-decoder.html" class="bg-gray-800 hover:bg-cyan-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-cyan-400 group-hover:text-white">📷 QR Code Decoder</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Upload a QR image and extract the encoded URL or message.</p>
+    </a>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-sm text-gray-500 mt-12">
+    © 2025 CyberScan by Ranveer • Made with ❤️ for school
+  </footer>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberScan – School Project by Ranveer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-white font-sans min-h-screen flex flex-col items-center px-4 py-8 gap-10">
+
+  <!-- Header -->
+  <header class="text-center max-w-2xl">
+    <h1 class="text-4xl sm:text-5xl font-bold text-purple-400 mb-4">👋 Welcome to CyberScan</h1>
+    <p class="text-lg text-gray-300">
+      This is a <span class="text-green-400 font-semibold">school project</span> coded and hosted by <span class="text-yellow-400 font-bold">Ranveer</span>.
+      <br>Explore tools for phishing awareness, cybersecurity, and OSINT basics.
+    </p>
+  </header>
+
+  <!-- Tools Grid -->
+  <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
+
+    <!-- 1. File / Link Malware Scan -->
+    <a href="filescan.html" class="bg-gray-800 hover:bg-purple-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-purple-400 group-hover:text-white">🗂️ File / Link Malware Scan</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Scan a downloadable file link using VirusTotal to check if it’s malicious.</p>
+    </a>
+
+    <!-- 2. URL Safety Check -->
+    <a href="urlscan.html" class="bg-gray-800 hover:bg-green-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-green-400 group-hover:text-white">🔗 URL Safety Check</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Verify if a website is flagged as unsafe by Google Safe Browsing.</p>
+    </a>
+
+    <!-- 3. Password Leak Checker -->
+    <a href="passwordcheck.html" class="bg-gray-800 hover:bg-red-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-red-400 group-hover:text-white">🔑 Password Leak Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your password appeared in known data breaches.</p>
+    </a>
+
+    <!-- 4. Phishing Awareness Lab -->
+    <a href="aware-phish.html" class="bg-gray-800 hover:bg-yellow-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-yellow-400 group-hover:text-white">🎣 Phishing Awareness</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Learn how phishing works and try an interactive phishing simulation.</p>
+    </a>
+
+    <!-- 5. Device Info -->
+    <a href="device-info.html" class="bg-gray-800 hover:bg-blue-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-blue-400 group-hover:text-white">💻 Device Info</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See what details your browser leaks — user agent, platform, and more.</p>
+    </a>
+
+    <!-- 6. Email Breach Checker -->
+    <a href="email-check.html" class="bg-gray-800 hover:bg-pink-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-pink-400 group-hover:text-white">📧 Email Breach Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your email was involved in any public data breach.</p>
+    </a>
+
+    <!-- 7. Hash Generator -->
+    <a href="hash-generator.html" class="bg-gray-800 hover:bg-indigo-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-indigo-400 group-hover:text-white">🔐 Hash Generator</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Generate MD5, SHA-1, and SHA-256 hashes from your input.</p>
+    </a>
+
+    <!-- 8. IP Lookup -->
+    <a href="ip-lookup.html" class="bg-gray-800 hover:bg-orange-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-orange-400 group-hover:text-white">🌍 IP Lookup</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check IP address details like location, ISP, and geodata.</p>
+    </a>
+
+    <!-- 9. Link Analyzer -->
+    <a href="link-analyzer.html" class="bg-gray-800 hover:bg-lime-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-lime-400 group-hover:text-white">🔍 Link Analyzer</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Get full redirection paths, shortened links, and headers.</p>
+    </a>
+
+    <!-- 10. Password Strength Checker -->
+    <a href="password-strength.html" class="bg-gray-800 hover:bg-teal-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-teal-400 group-hover:text-white">🧠 Password Strength</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See how strong your password is and get suggestions.</p>
+    </a>
+
+    <!-- 11. QR Decoder -->
+    <a href="qr-decoder.html" class="bg-gray-800 hover:bg-cyan-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-cyan-400 group-hover:text-white">📷 QR Code Decoder</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Upload a QR image and extract the encoded URL or message.</p>
+    </a>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-sm text-gray-500 mt-12">
+    © 2025 CyberScan by Ranveer • Made with ❤️ for school
+  </footer>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberScan – School Project by Ranveer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-white font-sans min-h-screen flex flex-col items-center px-4 py-8 gap-10">
+
+  <!-- Header -->
+  <header class="text-center max-w-2xl">
+    <h1 class="text-4xl sm:text-5xl font-bold text-purple-400 mb-4">👋 Welcome to CyberScan</h1>
+    <p class="text-lg text-gray-300">
+      This is a <span class="text-green-400 font-semibold">school project</span> coded and hosted by <span class="text-yellow-400 font-bold">Ranveer</span>.
+      <br>Explore tools for phishing awareness, cybersecurity, and OSINT basics.
+    </p>
+  </header>
+
+  <!-- Tools Grid -->
+  <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
+
+    <!-- 1. File / Link Malware Scan -->
+    <a href="filescan.html" class="bg-gray-800 hover:bg-purple-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-purple-400 group-hover:text-white">🗂️ File / Link Malware Scan</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Scan a downloadable file link using VirusTotal to check if it’s malicious.</p>
+    </a>
+
+    <!-- 2. URL Safety Check -->
+    <a href="urlscan.html" class="bg-gray-800 hover:bg-green-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-green-400 group-hover:text-white">🔗 URL Safety Check</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Verify if a website is flagged as unsafe by Google Safe Browsing.</p>
+    </a>
+
+    <!-- 3. Password Leak Checker -->
+    <a href="passwordcheck.html" class="bg-gray-800 hover:bg-red-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-red-400 group-hover:text-white">🔑 Password Leak Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your password appeared in known data breaches.</p>
+    </a>
+
+    <!-- 4. Phishing Awareness Lab -->
+    <a href="aware-phish.html" class="bg-gray-800 hover:bg-yellow-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-yellow-400 group-hover:text-white">🎣 Phishing Awareness</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Learn how phishing works and try an interactive phishing simulation.</p>
+    </a>
+
+    <!-- 5. Device Info -->
+    <a href="device-info.html" class="bg-gray-800 hover:bg-blue-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-blue-400 group-hover:text-white">💻 Device Info</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See what details your browser leaks — user agent, platform, and more.</p>
+    </a>
+
+    <!-- 6. Email Breach Checker -->
+    <a href="email-check.html" class="bg-gray-800 hover:bg-pink-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-pink-400 group-hover:text-white">📧 Email Breach Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your email was involved in any public data breach.</p>
+    </a>
+
+    <!-- 7. Hash Generator -->
+    <a href="hash-generator.html" class="bg-gray-800 hover:bg-indigo-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-indigo-400 group-hover:text-white">🔐 Hash Generator</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Generate MD5, SHA-1, and SHA-256 hashes from your input.</p>
+    </a>
+
+    <!-- 8. IP Lookup -->
+    <a href="ip-lookup.html" class="bg-gray-800 hover:bg-orange-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-orange-400 group-hover:text-white">🌍 IP Lookup</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check IP address details like location, ISP, and geodata.</p>
+    </a>
+
+    <!-- 9. Link Analyzer -->
+    <a href="link-analyzer.html" class="bg-gray-800 hover:bg-lime-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-lime-400 group-hover:text-white">🔍 Link Analyzer</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Get full redirection paths, shortened links, and headers.</p>
+    </a>
+
+    <!-- 10. Password Strength Checker -->
+    <a href="password-strength.html" class="bg-gray-800 hover:bg-teal-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-teal-400 group-hover:text-white">🧠 Password Strength</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See how strong your password is and get suggestions.</p>
+    </a>
+
+    <!-- 11. QR Decoder -->
+    <a href="qr-decoder.html" class="bg-gray-800 hover:bg-cyan-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-cyan-400 group-hover:text-white">📷 QR Code Decoder</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Upload a QR image and extract the encoded URL or message.</p>
+    </a>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-sm text-gray-500 mt-12">
+    © 2025 CyberScan by Ranveer • Made with ❤️ for school
+  </footer>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberScan – School Project by Ranveer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-white font-sans min-h-screen flex flex-col items-center px-4 py-8 gap-10">
+
+  <!-- Header -->
+  <header class="text-center max-w-2xl">
+    <h1 class="text-4xl sm:text-5xl font-bold text-purple-400 mb-4">👋 Welcome to CyberScan</h1>
+    <p class="text-lg text-gray-300">
+      This is a <span class="text-green-400 font-semibold">school project</span> coded and hosted by <span class="text-yellow-400 font-bold">Ranveer</span>.
+      <br>Explore tools for phishing awareness, cybersecurity, and OSINT basics.
+    </p>
+  </header>
+
+  <!-- Tools Grid -->
+  <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
+
+    <!-- 1. File / Link Malware Scan -->
+    <a href="filescan.html" class="bg-gray-800 hover:bg-purple-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-purple-400 group-hover:text-white">🗂️ File / Link Malware Scan</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Scan a downloadable file link using VirusTotal to check if it’s malicious.</p>
+    </a>
+
+    <!-- 2. URL Safety Check -->
+    <a href="urlscan.html" class="bg-gray-800 hover:bg-green-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-green-400 group-hover:text-white">🔗 URL Safety Check</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Verify if a website is flagged as unsafe by Google Safe Browsing.</p>
+    </a>
+
+    <!-- 3. Password Leak Checker -->
+    <a href="passwordcheck.html" class="bg-gray-800 hover:bg-red-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-red-400 group-hover:text-white">🔑 Password Leak Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your password appeared in known data breaches.</p>
+    </a>
+
+    <!-- 4. Phishing Awareness Lab -->
+    <a href="aware-phish.html" class="bg-gray-800 hover:bg-yellow-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-yellow-400 group-hover:text-white">🎣 Phishing Awareness</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Learn how phishing works and try an interactive phishing simulation.</p>
+    </a>
+
+    <!-- 5. Device Info -->
+    <a href="device-info.html" class="bg-gray-800 hover:bg-blue-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-blue-400 group-hover:text-white">💻 Device Info</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See what details your browser leaks — user agent, platform, and more.</p>
+    </a>
+
+    <!-- 6. Email Breach Checker -->
+    <a href="email-check.html" class="bg-gray-800 hover:bg-pink-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-pink-400 group-hover:text-white">📧 Email Breach Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your email was involved in any public data breach.</p>
+    </a>
+
+    <!-- 7. Hash Generator -->
+    <a href="hash-generator.html" class="bg-gray-800 hover:bg-indigo-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-indigo-400 group-hover:text-white">🔐 Hash Generator</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Generate MD5, SHA-1, and SHA-256 hashes from your input.</p>
+    </a>
+
+    <!-- 8. IP Lookup -->
+    <a href="ip-lookup.html" class="bg-gray-800 hover:bg-orange-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-orange-400 group-hover:text-white">🌍 IP Lookup</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check IP address details like location, ISP, and geodata.</p>
+    </a>
+
+    <!-- 9. Link Analyzer -->
+    <a href="link-analyzer.html" class="bg-gray-800 hover:bg-lime-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-lime-400 group-hover:text-white">🔍 Link Analyzer</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Get full redirection paths, shortened links, and headers.</p>
+    </a>
+
+    <!-- 10. Password Strength Checker -->
+    <a href="password-strength.html" class="bg-gray-800 hover:bg-teal-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-teal-400 group-hover:text-white">🧠 Password Strength</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See how strong your password is and get suggestions.</p>
+    </a>
+
+    <!-- 11. QR Decoder -->
+    <a href="qr-decoder.html" class="bg-gray-800 hover:bg-cyan-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-cyan-400 group-hover:text-white">📷 QR Code Decoder</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Upload a QR image and extract the encoded URL or message.</p>
+    </a>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-sm text-gray-500 mt-12">
+    © 2025 CyberScan by Ranveer • Made with ❤️ for school
+  </footer>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberScan – School Project by Ranveer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-white font-sans min-h-screen flex flex-col items-center px-4 py-8 gap-10">
+
+  <!-- Header -->
+  <header class="text-center max-w-2xl">
+    <h1 class="text-4xl sm:text-5xl font-bold text-purple-400 mb-4">👋 Welcome to CyberScan</h1>
+    <p class="text-lg text-gray-300">
+      This is a <span class="text-green-400 font-semibold">school project</span> coded and hosted by <span class="text-yellow-400 font-bold">Ranveer</span>.
+      <br>Explore tools for phishing awareness, cybersecurity, and OSINT basics.
+    </p>
+  </header>
+
+  <!-- Tools Grid -->
+  <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
+
+    <!-- 1. File / Link Malware Scan -->
+    <a href="filescan.html" class="bg-gray-800 hover:bg-purple-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-purple-400 group-hover:text-white">🗂️ File / Link Malware Scan</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Scan a downloadable file link using VirusTotal to check if it’s malicious.</p>
+    </a>
+
+    <!-- 2. URL Safety Check -->
+    <a href="urlscan.html" class="bg-gray-800 hover:bg-green-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-green-400 group-hover:text-white">🔗 URL Safety Check</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Verify if a website is flagged as unsafe by Google Safe Browsing.</p>
+    </a>
+
+    <!-- 3. Password Leak Checker -->
+    <a href="passwordcheck.html" class="bg-gray-800 hover:bg-red-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-red-400 group-hover:text-white">🔑 Password Leak Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your password appeared in known data breaches.</p>
+    </a>
+
+    <!-- 4. Phishing Awareness Lab -->
+    <a href="aware-phish.html" class="bg-gray-800 hover:bg-yellow-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-yellow-400 group-hover:text-white">🎣 Phishing Awareness</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Learn how phishing works and try an interactive phishing simulation.</p>
+    </a>
+
+    <!-- 5. Device Info -->
+    <a href="device-info.html" class="bg-gray-800 hover:bg-blue-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-blue-400 group-hover:text-white">💻 Device Info</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See what details your browser leaks — user agent, platform, and more.</p>
+    </a>
+
+    <!-- 6. Email Breach Checker -->
+    <a href="email-check.html" class="bg-gray-800 hover:bg-pink-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-pink-400 group-hover:text-white">📧 Email Breach Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your email was involved in any public data breach.</p>
+    </a>
+
+    <!-- 7. Hash Generator -->
+    <a href="hash-generator.html" class="bg-gray-800 hover:bg-indigo-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-indigo-400 group-hover:text-white">🔐 Hash Generator</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Generate MD5, SHA-1, and SHA-256 hashes from your input.</p>
+    </a>
+
+    <!-- 8. IP Lookup -->
+    <a href="ip-lookup.html" class="bg-gray-800 hover:bg-orange-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-orange-400 group-hover:text-white">🌍 IP Lookup</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check IP address details like location, ISP, and geodata.</p>
+    </a>
+
+    <!-- 9. Link Analyzer -->
+    <a href="link-analyzer.html" class="bg-gray-800 hover:bg-lime-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-lime-400 group-hover:text-white">🔍 Link Analyzer</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Get full redirection paths, shortened links, and headers.</p>
+    </a>
+
+    <!-- 10. Password Strength Checker -->
+    <a href="password-strength.html" class="bg-gray-800 hover:bg-teal-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-teal-400 group-hover:text-white">🧠 Password Strength</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See how strong your password is and get suggestions.</p>
+    </a>
+
+    <!-- 11. QR Decoder -->
+    <a href="qr-decoder.html" class="bg-gray-800 hover:bg-cyan-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-cyan-400 group-hover:text-white">📷 QR Code Decoder</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Upload a QR image and extract the encoded URL or message.</p>
+    </a>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-sm text-gray-500 mt-12">
+    © 2025 CyberScan by Ranveer • Made with ❤️ for school
+  </footer>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberScan – School Project by Ranveer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-white font-sans min-h-screen flex flex-col items-center px-4 py-8 gap-10">
+
+  <!-- Header -->
+  <header class="text-center max-w-2xl">
+    <h1 class="text-4xl sm:text-5xl font-bold text-purple-400 mb-4">👋 Welcome to CyberScan</h1>
+    <p class="text-lg text-gray-300">
+      This is a <span class="text-green-400 font-semibold">school project</span> coded and hosted by <span class="text-yellow-400 font-bold">Ranveer</span>.
+      <br>Explore tools for phishing awareness, cybersecurity, and OSINT basics.
+    </p>
+  </header>
+
+  <!-- Tools Grid -->
+  <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
+
+    <!-- 1. File / Link Malware Scan -->
+    <a href="filescan.html" class="bg-gray-800 hover:bg-purple-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-purple-400 group-hover:text-white">🗂️ File / Link Malware Scan</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Scan a downloadable file link using VirusTotal to check if it’s malicious.</p>
+    </a>
+
+    <!-- 2. URL Safety Check -->
+    <a href="urlscan.html" class="bg-gray-800 hover:bg-green-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-green-400 group-hover:text-white">🔗 URL Safety Check</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Verify if a website is flagged as unsafe by Google Safe Browsing.</p>
+    </a>
+
+    <!-- 3. Password Leak Checker -->
+    <a href="passwordcheck.html" class="bg-gray-800 hover:bg-red-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-red-400 group-hover:text-white">🔑 Password Leak Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your password appeared in known data breaches.</p>
+    </a>
+
+    <!-- 4. Phishing Awareness Lab -->
+    <a href="aware-phish.html" class="bg-gray-800 hover:bg-yellow-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-yellow-400 group-hover:text-white">🎣 Phishing Awareness</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Learn how phishing works and try an interactive phishing simulation.</p>
+    </a>
+
+    <!-- 5. Device Info -->
+    <a href="device-info.html" class="bg-gray-800 hover:bg-blue-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-blue-400 group-hover:text-white">💻 Device Info</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See what details your browser leaks — user agent, platform, and more.</p>
+    </a>
+
+    <!-- 6. Email Breach Checker -->
+    <a href="email-check.html" class="bg-gray-800 hover:bg-pink-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-pink-400 group-hover:text-white">📧 Email Breach Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your email was involved in any public data breach.</p>
+    </a>
+
+    <!-- 7. Hash Generator -->
+    <a href="hash-generator.html" class="bg-gray-800 hover:bg-indigo-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-indigo-400 group-hover:text-white">🔐 Hash Generator</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Generate MD5, SHA-1, and SHA-256 hashes from your input.</p>
+    </a>
+
+    <!-- 8. IP Lookup -->
+    <a href="ip-lookup.html" class="bg-gray-800 hover:bg-orange-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-orange-400 group-hover:text-white">🌍 IP Lookup</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check IP address details like location, ISP, and geodata.</p>
+    </a>
+
+    <!-- 9. Link Analyzer -->
+    <a href="link-analyzer.html" class="bg-gray-800 hover:bg-lime-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-lime-400 group-hover:text-white">🔍 Link Analyzer</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Get full redirection paths, shortened links, and headers.</p>
+    </a>
+
+    <!-- 10. Password Strength Checker -->
+    <a href="password-strength.html" class="bg-gray-800 hover:bg-teal-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-teal-400 group-hover:text-white">🧠 Password Strength</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See how strong your password is and get suggestions.</p>
+    </a>
+
+    <!-- 11. QR Decoder -->
+    <a href="qr-decoder.html" class="bg-gray-800 hover:bg-cyan-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-cyan-400 group-hover:text-white">📷 QR Code Decoder</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Upload a QR image and extract the encoded URL or message.</p>
+    </a>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-sm text-gray-500 mt-12">
+    © 2025 CyberScan by Ranveer • Made with ❤️ for school
+  </footer>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberScan – School Project by Ranveer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-white font-sans min-h-screen flex flex-col items-center px-4 py-8 gap-10">
+
+  <!-- Header -->
+  <header class="text-center max-w-2xl">
+    <h1 class="text-4xl sm:text-5xl font-bold text-purple-400 mb-4">👋 Welcome to CyberScan</h1>
+    <p class="text-lg text-gray-300">
+      This is a <span class="text-green-400 font-semibold">school project</span> coded and hosted by <span class="text-yellow-400 font-bold">Ranveer</span>.
+      <br>Explore tools for phishing awareness, cybersecurity, and OSINT basics.
+    </p>
+  </header>
+
+  <!-- Tools Grid -->
+  <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
+
+    <!-- 1. File / Link Malware Scan -->
+    <a href="filescan.html" class="bg-gray-800 hover:bg-purple-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-purple-400 group-hover:text-white">🗂️ File / Link Malware Scan</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Scan a downloadable file link using VirusTotal to check if it’s malicious.</p>
+    </a>
+
+    <!-- 2. URL Safety Check -->
+    <a href="urlscan.html" class="bg-gray-800 hover:bg-green-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-green-400 group-hover:text-white">🔗 URL Safety Check</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Verify if a website is flagged as unsafe by Google Safe Browsing.</p>
+    </a>
+
+    <!-- 3. Password Leak Checker -->
+    <a href="passwordcheck.html" class="bg-gray-800 hover:bg-red-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-red-400 group-hover:text-white">🔑 Password Leak Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your password appeared in known data breaches.</p>
+    </a>
+
+    <!-- 4. Phishing Awareness Lab -->
+    <a href="aware-phish.html" class="bg-gray-800 hover:bg-yellow-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-yellow-400 group-hover:text-white">🎣 Phishing Awareness</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Learn how phishing works and try an interactive phishing simulation.</p>
+    </a>
+
+    <!-- 5. Device Info -->
+    <a href="device-info.html" class="bg-gray-800 hover:bg-blue-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-blue-400 group-hover:text-white">💻 Device Info</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See what details your browser leaks — user agent, platform, and more.</p>
+    </a>
+
+    <!-- 6. Email Breach Checker -->
+    <a href="email-check.html" class="bg-gray-800 hover:bg-pink-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-pink-400 group-hover:text-white">📧 Email Breach Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your email was involved in any public data breach.</p>
+    </a>
+
+    <!-- 7. Hash Generator -->
+    <a href="hash-generator.html" class="bg-gray-800 hover:bg-indigo-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-indigo-400 group-hover:text-white">🔐 Hash Generator</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Generate MD5, SHA-1, and SHA-256 hashes from your input.</p>
+    </a>
+
+    <!-- 8. IP Lookup -->
+    <a href="ip-lookup.html" class="bg-gray-800 hover:bg-orange-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-orange-400 group-hover:text-white">🌍 IP Lookup</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check IP address details like location, ISP, and geodata.</p>
+    </a>
+
+    <!-- 9. Link Analyzer -->
+    <a href="link-analyzer.html" class="bg-gray-800 hover:bg-lime-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-lime-400 group-hover:text-white">🔍 Link Analyzer</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Get full redirection paths, shortened links, and headers.</p>
+    </a>
+
+    <!-- 10. Password Strength Checker -->
+    <a href="password-strength.html" class="bg-gray-800 hover:bg-teal-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-teal-400 group-hover:text-white">🧠 Password Strength</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See how strong your password is and get suggestions.</p>
+    </a>
+
+    <!-- 11. QR Decoder -->
+    <a href="qr-decoder.html" class="bg-gray-800 hover:bg-cyan-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-cyan-400 group-hover:text-white">📷 QR Code Decoder</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Upload a QR image and extract the encoded URL or message.</p>
+    </a>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-sm text-gray-500 mt-12">
+    © 2025 CyberScan by Ranveer • Made with ❤️ for school
+  </footer>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberScan – School Project by Ranveer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-white font-sans min-h-screen flex flex-col items-center px-4 py-8 gap-10">
+
+  <!-- Header -->
+  <header class="text-center max-w-2xl">
+    <h1 class="text-4xl sm:text-5xl font-bold text-purple-400 mb-4">👋 Welcome to CyberScan</h1>
+    <p class="text-lg text-gray-300">
+      This is a <span class="text-green-400 font-semibold">school project</span> coded and hosted by <span class="text-yellow-400 font-bold">Ranveer</span>.
+      <br>Explore tools for phishing awareness, cybersecurity, and OSINT basics.
+    </p>
+  </header>
+
+  <!-- Tools Grid -->
+  <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
+
+    <!-- 1. File / Link Malware Scan -->
+    <a href="filescan.html" class="bg-gray-800 hover:bg-purple-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-purple-400 group-hover:text-white">🗂️ File / Link Malware Scan</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Scan a downloadable file link using VirusTotal to check if it’s malicious.</p>
+    </a>
+
+    <!-- 2. URL Safety Check -->
+    <a href="urlscan.html" class="bg-gray-800 hover:bg-green-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-green-400 group-hover:text-white">🔗 URL Safety Check</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Verify if a website is flagged as unsafe by Google Safe Browsing.</p>
+    </a>
+
+    <!-- 3. Password Leak Checker -->
+    <a href="passwordcheck.html" class="bg-gray-800 hover:bg-red-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-red-400 group-hover:text-white">🔑 Password Leak Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your password appeared in known data breaches.</p>
+    </a>
+
+    <!-- 4. Phishing Awareness Lab -->
+    <a href="aware-phish.html" class="bg-gray-800 hover:bg-yellow-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-yellow-400 group-hover:text-white">🎣 Phishing Awareness</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Learn how phishing works and try an interactive phishing simulation.</p>
+    </a>
+
+    <!-- 5. Device Info -->
+    <a href="device-info.html" class="bg-gray-800 hover:bg-blue-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-blue-400 group-hover:text-white">💻 Device Info</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See what details your browser leaks — user agent, platform, and more.</p>
+    </a>
+
+    <!-- 6. Email Breach Checker -->
+    <a href="email-check.html" class="bg-gray-800 hover:bg-pink-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-pink-400 group-hover:text-white">📧 Email Breach Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your email was involved in any public data breach.</p>
+    </a>
+
+    <!-- 7. Hash Generator -->
+    <a href="hash-generator.html" class="bg-gray-800 hover:bg-indigo-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-indigo-400 group-hover:text-white">🔐 Hash Generator</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Generate MD5, SHA-1, and SHA-256 hashes from your input.</p>
+    </a>
+
+    <!-- 8. IP Lookup -->
+    <a href="ip-lookup.html" class="bg-gray-800 hover:bg-orange-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-orange-400 group-hover:text-white">🌍 IP Lookup</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check IP address details like location, ISP, and geodata.</p>
+    </a>
+
+    <!-- 9. Link Analyzer -->
+    <a href="link-analyzer.html" class="bg-gray-800 hover:bg-lime-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-lime-400 group-hover:text-white">🔍 Link Analyzer</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Get full redirection paths, shortened links, and headers.</p>
+    </a>
+
+    <!-- 10. Password Strength Checker -->
+    <a href="password-strength.html" class="bg-gray-800 hover:bg-teal-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-teal-400 group-hover:text-white">🧠 Password Strength</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See how strong your password is and get suggestions.</p>
+    </a>
+
+    <!-- 11. QR Decoder -->
+    <a href="qr-decoder.html" class="bg-gray-800 hover:bg-cyan-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-cyan-400 group-hover:text-white">📷 QR Code Decoder</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Upload a QR image and extract the encoded URL or message.</p>
+    </a>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-sm text-gray-500 mt-12">
+    © 2025 CyberScan by Ranveer • Made with ❤️ for school
+  </footer>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberScan – School Project by Ranveer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-white font-sans min-h-screen flex flex-col items-center px-4 py-8 gap-10">
+
+  <!-- Header -->
+  <header class="text-center max-w-2xl">
+    <h1 class="text-4xl sm:text-5xl font-bold text-purple-400 mb-4">👋 Welcome to CyberScan</h1>
+    <p class="text-lg text-gray-300">
+      This is a <span class="text-green-400 font-semibold">school project</span> coded and hosted by <span class="text-yellow-400 font-bold">Ranveer</span>.
+      <br>Explore tools for phishing awareness, cybersecurity, and OSINT basics.
+    </p>
+  </header>
+
+  <!-- Tools Grid -->
+  <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
+
+    <!-- 1. File / Link Malware Scan -->
+    <a href="filescan.html" class="bg-gray-800 hover:bg-purple-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-purple-400 group-hover:text-white">🗂️ File / Link Malware Scan</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Scan a downloadable file link using VirusTotal to check if it’s malicious.</p>
+    </a>
+
+    <!-- 2. URL Safety Check -->
+    <a href="urlscan.html" class="bg-gray-800 hover:bg-green-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-green-400 group-hover:text-white">🔗 URL Safety Check</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Verify if a website is flagged as unsafe by Google Safe Browsing.</p>
+    </a>
+
+    <!-- 3. Password Leak Checker -->
+    <a href="passwordcheck.html" class="bg-gray-800 hover:bg-red-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-red-400 group-hover:text-white">🔑 Password Leak Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your password appeared in known data breaches.</p>
+    </a>
+
+    <!-- 4. Phishing Awareness Lab -->
+    <a href="aware-phish.html" class="bg-gray-800 hover:bg-yellow-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-yellow-400 group-hover:text-white">🎣 Phishing Awareness</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Learn how phishing works and try an interactive phishing simulation.</p>
+    </a>
+
+    <!-- 5. Device Info -->
+    <a href="device-info.html" class="bg-gray-800 hover:bg-blue-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-blue-400 group-hover:text-white">💻 Device Info</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See what details your browser leaks — user agent, platform, and more.</p>
+    </a>
+
+    <!-- 6. Email Breach Checker -->
+    <a href="email-check.html" class="bg-gray-800 hover:bg-pink-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-pink-400 group-hover:text-white">📧 Email Breach Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your email was involved in any public data breach.</p>
+    </a>
+
+    <!-- 7. Hash Generator -->
+    <a href="hash-generator.html" class="bg-gray-800 hover:bg-indigo-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-indigo-400 group-hover:text-white">🔐 Hash Generator</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Generate MD5, SHA-1, and SHA-256 hashes from your input.</p>
+    </a>
+
+    <!-- 8. IP Lookup -->
+    <a href="ip-lookup.html" class="bg-gray-800 hover:bg-orange-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-orange-400 group-hover:text-white">🌍 IP Lookup</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check IP address details like location, ISP, and geodata.</p>
+    </a>
+
+    <!-- 9. Link Analyzer -->
+    <a href="link-analyzer.html" class="bg-gray-800 hover:bg-lime-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-lime-400 group-hover:text-white">🔍 Link Analyzer</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Get full redirection paths, shortened links, and headers.</p>
+    </a>
+
+    <!-- 10. Password Strength Checker -->
+    <a href="password-strength.html" class="bg-gray-800 hover:bg-teal-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-teal-400 group-hover:text-white">🧠 Password Strength</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See how strong your password is and get suggestions.</p>
+    </a>
+
+    <!-- 11. QR Decoder -->
+    <a href="qr-decoder.html" class="bg-gray-800 hover:bg-cyan-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-cyan-400 group-hover:text-white">📷 QR Code Decoder</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Upload a QR image and extract the encoded URL or message.</p>
+    </a>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-sm text-gray-500 mt-12">
+    © 2025 CyberScan by Ranveer • Made with ❤️ for school
+  </footer>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberScan – School Project by Ranveer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-white font-sans min-h-screen flex flex-col items-center px-4 py-8 gap-10">
+
+  <!-- Header -->
+  <header class="text-center max-w-2xl">
+    <h1 class="text-4xl sm:text-5xl font-bold text-purple-400 mb-4">👋 Welcome to CyberScan</h1>
+    <p class="text-lg text-gray-300">
+      This is a <span class="text-green-400 font-semibold">school project</span> coded and hosted by <span class="text-yellow-400 font-bold">Ranveer</span>.
+      <br>Explore tools for phishing awareness, cybersecurity, and OSINT basics.
+    </p>
+  </header>
+
+  <!-- Tools Grid -->
+  <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
+
+    <!-- 1. File / Link Malware Scan -->
+    <a href="filescan.html" class="bg-gray-800 hover:bg-purple-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-purple-400 group-hover:text-white">🗂️ File / Link Malware Scan</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Scan a downloadable file link using VirusTotal to check if it’s malicious.</p>
+    </a>
+
+    <!-- 2. URL Safety Check -->
+    <a href="urlscan.html" class="bg-gray-800 hover:bg-green-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-green-400 group-hover:text-white">🔗 URL Safety Check</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Verify if a website is flagged as unsafe by Google Safe Browsing.</p>
+    </a>
+
+    <!-- 3. Password Leak Checker -->
+    <a href="passwordcheck.html" class="bg-gray-800 hover:bg-red-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-red-400 group-hover:text-white">🔑 Password Leak Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your password appeared in known data breaches.</p>
+    </a>
+
+    <!-- 4. Phishing Awareness Lab -->
+    <a href="aware-phish.html" class="bg-gray-800 hover:bg-yellow-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-yellow-400 group-hover:text-white">🎣 Phishing Awareness</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Learn how phishing works and try an interactive phishing simulation.</p>
+    </a>
+
+    <!-- 5. Device Info -->
+    <a href="device-info.html" class="bg-gray-800 hover:bg-blue-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-blue-400 group-hover:text-white">💻 Device Info</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See what details your browser leaks — user agent, platform, and more.</p>
+    </a>
+
+    <!-- 6. Email Breach Checker -->
+    <a href="email-check.html" class="bg-gray-800 hover:bg-pink-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-pink-400 group-hover:text-white">📧 Email Breach Checker</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your email was involved in any public data breach.</p>
+    </a>
+
+    <!-- 7. Hash Generator -->
+    <a href="hash-generator.html" class="bg-gray-800 hover:bg-indigo-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-indigo-400 group-hover:text-white">🔐 Hash Generator</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Generate MD5, SHA-1, and SHA-256 hashes from your input.</p>
+    </a>
+
+    <!-- 8. IP Lookup -->
+    <a href="ip-lookup.html" class="bg-gray-800 hover:bg-orange-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-orange-400 group-hover:text-white">🌍 IP Lookup</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check IP address details like location, ISP, and geodata.</p>
+    </a>
+
+    <!-- 9. Link Analyzer -->
+    <a href="link-analyzer.html" class="bg-gray-800 hover:bg-lime-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-lime-400 group-hover:text-white">🔍 Link Analyzer</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Get full redirection paths, shortened links, and headers.</p>
+    </a>
+
+    <!-- 10. Password Strength Checker -->
+    <a href="password-strength.html" class="bg-gray-800 hover:bg-teal-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-teal-400 group-hover:text-white">🧠 Password Strength</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See how strong your password is and get suggestions.</p>
+    </a>
+
+    <!-- 11. QR Decoder -->
+    <a href="qr-decoder.html" class="bg-gray-800 hover:bg-cyan-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+      <h2 class="text-xl font-semibold text-cyan-400 group-hover:text-white">📷 QR Code Decoder</h2>
+      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Upload a QR image and extract the encoded URL or message.</p>
+    </a>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-sm text-gray-500 mt-12">
+    © 2025 CyberScan by Ranveer • Made with ❤️ for school
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Redirect Check • Link Analyzer</title>
+  <style>
+    :root{
+      --bg:#0b0f14;--panel:#111823;--muted:#2a3441;--text:#e6edf3;--sub:#a5b4c3;--accent:#60a5fa;--good:#22c55e;--warn:#f59e0b;--bad:#ef4444;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#0a0e14,#101827);color:var(--text);font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";}
+    header{position:sticky;top:0;z-index:10;background:rgba(17,24,35,.8);backdrop-filter: blur(10px);border-bottom:1px solid #1f2a37}
+    .wrap{max-width:1000px;margin:0 auto;padding:16px}
+    h1{margin:0;font-size:20px;letter-spacing:.3px}
+    .tag{display:inline-block;margin-left:8px;padding:2px 8px;border:1px solid var(--muted);border-radius:999px;font-size:12px;color:var(--sub)}
+
+    .card{background:var(--panel);border:1px solid #1f2a37;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .grid{display:grid;gap:16px}
+    @media(min-width:720px){.grid{grid-template-columns:1.2fr .8fr}}
+
+    .row{display:flex;gap:8px;align-items:center}
+    input,select,button,textarea{font:inherit;color:inherit}
+    input[type="text"]{width:100%;padding:14px 16px;border-radius:12px;border:1px solid #1f2a37;background:#0e1522;color:var(--text);outline:none}
+    input[type="text"]:focus{border-color:#2b3a4a;box-shadow:0 0 0 4px rgba(96,165,250,.15)}
+    label{font-size:12px;color:var(--sub)}
+    .controls{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+    .controls .field{background:#0e1522;border:1px solid #1f2a37;border-radius:12px;padding:10px}
+    .controls .field input{padding:8px 10px}
+    .btn{padding:12px 16px;border-radius:12px;border:1px solid #1f2a37;background:linear-gradient(180deg,#1b2636,#152031);cursor:pointer;transition:.15s ease;display:inline-flex;align-items:center;gap:8px}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 10px 20px rgba(0,0,0,.25)}
+    .btn:disabled{opacity:.6;cursor:not-allowed}
+    .btn.primary{background:linear-gradient(180deg,#2563eb,#1d4ed8);border-color:#1e3a8a}
+
+    .hint{font-size:12px;color:var(--sub)}
+
+    .table{width:100%;border-collapse:separate;border-spacing:0 10px}
+    .table th{font-size:12px;text-transform:uppercase;color:var(--sub);text-align:left;padding:0 12px}
+    .table td{background:#0e1522;border:1px solid #1f2a37;border-left:none;border-right:none;padding:12px;vertical-align:top}
+    .table tr{border-radius:10px}
+
+    .code{font-family:var(--mono);background:#0a1220;border:1px solid #112136;padding:12px;border-radius:12px;overflow:auto}
+    .k{color:#93c5fd}
+    .v{color:#eab308}
+
+    details{background:#0e1522;border:1px solid #1f2a37;border-radius:12px;padding:10px}
+    summary{cursor:pointer;color:var(--sub)}
+
+    .pill{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;border:1px solid #223046;font-size:12px}
+    .ok{color:var(--good);border-color:rgba(34,197,94,.4)}
+    .warn{color:var(--warn);border-color:rgba(245,158,11,.4)}
+    .bad{color:var(--bad);border-color:rgba(239,68,68,.4)}
+
+    footer{opacity:.7;text-align:center;padding:24px}
+    .inline{display:inline-flex;gap:8px;flex-wrap:wrap}
+    .muted{color:var(--sub)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap row" style="justify-content:space-between">
+      <div>
+        <h1>Redirect Check <span class="tag">API viewer</span></h1>
+        <div class="hint">Expands shortened links, shows redirect chain, timing, IPs, and headers.</div>
+      </div>
+      <div class="inline">
+        <button id="btnSample" class="btn">Try sample</button>
+        <button id="btnExport" class="btn" disabled>Export JSON</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" style="margin-top:16px">
+    <div class="card" style="padding:16px">
+      <div class="grid">
+        <section>
+          <label for="url">URL to analyze</label>
+          <div class="row" style="gap:12px;margin-top:6px">
+            <input id="url" type="text" placeholder="https://example.com or https://bit.ly/abc" />
+            <button id="go" class="btn primary">Analyze</button>
+          </div>
+
+          <div class="controls" style="margin-top:12px">
+            <div class="field">
+              <label>Timeout (s)</label>
+              <input id="timeout" type="number" min="1" max="30" value="5" />
+            </div>
+            <div class="field">
+              <label>Max Hops</label>
+              <input id="maxhops" type="number" min="1" max="20" value="10" />
+            </div>
+            <div class="field row" style="justify-content:space-between">
+              <label for="meta">Follow meta refresh</label>
+              <input id="meta" type="checkbox" checked />
+            </div>
+          </div>
+
+          <p class="hint" style="margin-top:8px">API: <code class="code" style="display:inline-block;padding:4px 8px">https://api.redirect-checker.net</code></p>
+
+          <div id="alerts" style="margin-top:12px"></div>
+
+          <div id="results" style="margin-top:16px;display:none">
+            <h3 style="margin:8px 0 12px">Redirect Chain</h3>
+            <table class="table" id="chain">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Status</th>
+                  <th>URL</th>
+                  <th>Redirect →</th>
+                  <th>Time (s)</th>
+                  <th>IP</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+
+            <details style="margin-top:14px">
+              <summary>Final response headers</summary>
+              <div id="finalHeaders" style="margin-top:10px"></div>
+            </details>
+
+            <details style="margin-top:14px">
+              <summary>Raw JSON</summary>
+              <pre id="raw" class="code" style="margin-top:10px;white-space:pre-wrap"></pre>
+            </details>
+
+            <div id="securityReview" style="margin-top:14px"></div>
+          </div>
+        </section>
+
+        <aside>
+          <div class="code" style="font-size:13px">
+            <strong>Tip</strong>: Paste any URL. We build a request like:
+<pre class="code" style="margin-top:8px"><span class="k">GET</span> /?url=<span class="v">encodeURIComponent(yourUrl)</span>&timeout=5&maxhops=10&meta-refresh=1&format=json
+<span class="k">Host</span>: api.redirect-checker.net
+</pre>
+            No cookies or local storage are used. Works entirely in your browser.
+          </div>
+
+          <div style="margin-top:16px" class="code">
+            <strong>Status legend</strong>
+            <div class="inline" style="margin-top:8px">
+              <span class="pill ok">2xx OK</span>
+              <span class="pill warn">3xx Redirect</span>
+              <span class="pill bad">4xx/5xx Error</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <footer class="muted">Built for quick analyses. Consider rate limits & CORS on the API.</footer>
+  </main>
+
+  <script>
+    const apiBase = 'https://api.redirect-checker.net/';
+
+    const el = {
+      url: document.getElementById('url'),
+      timeout: document.getElementById('timeout'),
+      maxhops: document.getElementById('maxhops'),
+      meta: document.getElementById('meta'),
+      go: document.getElementById('go'),
+      sample: document.getElementById('btnSample'),
+      export: document.getElementById('btnExport'),
+      alerts: document.getElementById('alerts'),
+      results: document.getElementById('results'),
+      chainBody: document.querySelector('#chain tbody'),
+      raw: document.getElementById('raw'),
+      finalHeaders: document.getElementById('finalHeaders'),
+      securityReview: document.getElementById('securityReview')
+    };
+
+    function htm(str){
+      const div=document.createElement('div');
+      div.innerText=str; // escape
+      return div.innerHTML;
+    }
+
+    function note(msg, type='info'){
+      const color = type==='error'? 'var(--bad)' : type==='warn'? 'var(--warn)' : 'var(--accent)';
+      el.alerts.innerHTML = `<div class="pill" style="border-color:${color};color:${color}">${htm(msg)}</div>`;
+    }
+
+    function badgeForStatus(code){
+      const n = Number(code)||0;
+      const base = 'pill ' + (n>=200 && n<300? 'ok' : n>=300 && n<400? 'warn' : 'bad');
+      return `<span class="${base}">${n||'-'}</span>`;
+    }
+
+    function prettyTime(sec){
+      return typeof sec === 'number' ? sec.toFixed(3) : '-';
+    }
+
+    function renderHeaders(parsed){
+      const keys = Object.keys(parsed||{}).filter(k=>k!=="0");
+      if(!keys.length){ return '<div class="muted">No headers</div>'; }
+      return `<div class="grid" style="grid-template-columns: 1fr; gap:8px">`+
+        keys.map(k=>`<div class="row" style="justify-content:space-between"><code class="k">${htm(k)}</code><code class="v">${htm(String(parsed[k]))}</code></div>`).join('')+
+      `</div>`
+    }
+
+    function analyzeSecurityHeaders(parsed){
+      const p = parsed || {};
+      const out = [];
+      const hasSTS = !!p['Strict-Transport-Security'];
+      const hasXFO = !!p['x-frame-options'] || !!p['X-Frame-Options'];
+      const hasXCTO= !!p['x-content-type-options'] || !!p['X-Content-Type-Options'];
+      const hasCSP = !!p['content-security-policy'] || !!p['Content-Security-Policy'];
+      const hasRP  = !!p['referrer-policy'] || !!p['Referrer-Policy'];
+
+      out.push(`<span class="pill ${hasSTS?'ok':'warn'}">HSTS ${hasSTS? 'present':'missing'}</span>`);
+      out.push(`<span class="pill ${hasXFO?'ok':'warn'}">X-Frame-Options ${hasXFO? 'present':'missing'}</span>`);
+      out.push(`<span class="pill ${hasXCTO?'ok':'warn'}">X-Content-Type-Options ${hasXCTO? 'present':'missing'}</span>`);
+      out.push(`<span class="pill ${hasCSP?'ok':'warn'}">CSP ${hasCSP? 'present':'missing'}</span>`);
+      out.push(`<span class="pill ${hasRP?'ok':'warn'}">Referrer-Policy ${hasRP? 'present':'missing'}</span>`);
+
+      return `<div class="inline">${out.join('')}</div>`;
+    }
+
+    function buildUrl(u, t, m, meta){
+      const params = new URLSearchParams({
+        url: u,
+        timeout: String(t||5),
+        maxhops: String(m||10),
+        ['meta-refresh']: meta? '1':'0',
+        format: 'json'
+      });
+      return `${apiBase}?${params.toString()}`;
+    }
+
+    async function fetchChain(){
+      const u = el.url.value.trim();
+      if(!u){ note('Enter a URL to analyze', 'warn'); return; }
+
+      let normalized = u;
+      if(!/^https?:\/\//i.test(normalized)) normalized = 'https://' + normalized;
+
+      const href = buildUrl(normalized, +el.timeout.value, +el.maxhops.value, el.meta.checked);
+      window.history.replaceState({}, '', '#'+encodeURIComponent(normalized));
+
+      el.go.disabled = true; el.export.disabled = true; el.results.style.display='none'; el.alerts.innerHTML='';
+      note('Fetching redirect chain…');
+
+      try{
+        const res = await fetch(href, { method:'GET' });
+        if(!res.ok) throw new Error('HTTP '+res.status);
+        const data = await res.json();
+        if(data.error || data.result!=='success') throw new Error('API error');
+
+        renderAll(data);
+        el.export.disabled = false;
+        note('Done');
+      }catch(err){
+        console.error(err);
+        note('Failed to fetch results. Possible CORS/Network issue or invalid URL.', 'error');
+      }finally{
+        el.go.disabled = false;
+      }
+    }
+
+    function renderAll(payload){
+      el.results.style.display='block';
+      el.chainBody.innerHTML = '';
+
+      const hops = (payload.data||[]);
+      hops.forEach((hop, idx)=>{
+        const r = hop.response || {}; const info = r.info || {}; const headers = (r.headers && r.headers.parsed) || {}; 
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${idx+1}</td>
+          <td>${badgeForStatus(info.http_code)}</td>
+          <td style="word-break:break-all">${htm(info.url||'-')}</td>
+          <td style="word-break:break-all">${htm(info.redirect_url||'')}</td>
+          <td>${prettyTime(info.total_time)}</td>
+          <td>${htm(info.primary_ip||'-')}</td>`;
+        el.chainBody.appendChild(tr);
+        if(idx===hops.length-1){
+          el.finalHeaders.innerHTML = renderHeaders(headers);
+          el.securityReview.innerHTML = `<h3 style="margin:14px 0 8px">Security headers</h3>${analyzeSecurityHeaders(headers)}`;
+        }
+      });
+
+      el.raw.textContent = JSON.stringify(payload, null, 2);
+    }
+
+    // Actions
+    el.go.addEventListener('click', fetchChain);
+    el.sample.addEventListener('click', ()=>{
+      el.url.value = 'https://blog.ahrefs.com';
+      el.timeout.value = 5; el.maxhops.value = 10; el.meta.checked = true;
+      fetchChain();
+    });
+    el.export.addEventListener('click', ()=>{
+      const blob = new Blob([el.raw.textContent||'{}'], {type:'application/json'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'redirect-check.json';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+
+    // Deep-link via hash
+    (function initFromHash(){
+      const hash = decodeURIComponent(location.hash.slice(1));
+      if(hash){ el.url.value = hash; }
+    })();
+  </script>
+</body>
+</html>

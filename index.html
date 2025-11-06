@@ -1,128 +1,221 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Raina – School Project by Ranveer</title>
+  <link rel="icon" type="image/png" href="favicon.png">
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Smooth reveal/hide */
+    .fade-in { animation: fadeIn .35s ease forwards; }
+    .fade-out { animation: fadeOut .35s ease forwards; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+
+    /* Prevent body from being scrollable while gate is active */
+    body.lock-scroll { overflow: hidden; height: 100vh; }
+  </style>
 </head>
-<body class="bg-gray-950 text-white font-sans min-h-screen flex flex-col items-center px-4 py-8 gap-10">
+<body class="bg-gray-950 text-white font-sans min-h-screen">
 
- 
-  <header class="text-center max-w-2xl">
-    <h1 class="text-4xl sm:text-5xl font-bold text-purple-400 mb-4">👋 Welcome to Raina</h1>
-    <p class="text-lg text-gray-300">
-      This is a <span class="text-green-400 font-semibold">school project</span> coded and hosted by <span class="text-yellow-400 font-bold">Ranveer</span>.
-      <br>Explore tools for phishing awareness, cybersecurity, and OSINT basics.
-    </p>
-  </header>
+  <!-- PASSWORD GATE: visible initially -->
+  <div id="passwordGate" class="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-6">
+    <div class="w-full max-w-md bg-gray-900/90 border border-gray-800 rounded-2xl p-8 shadow-2xl text-center">
+      <h1 class="text-2xl font-bold text-purple-300 mb-4">🔐 Enter password to open Raina</h1>
+      <p class="text-sm text-gray-400 mb-6">This project is for demo purposes. Enter the password to continue.</p>
 
- 
-  <section class="max-w-3xl bg-gray-800 text-gray-300 p-6 rounded-2xl shadow-lg text-center leading-relaxed">
-    <p>
-      🛡️ In today’s digital world, security is more important than ever. Hackers often exploit weak passwords, 
-      phishing links, and exposed subdomains to gain access to sensitive information. 
-      <br><br>
-      This project is designed to raise awareness about <span class="text-purple-300 font-semibold">cybersecurity</span> 
-      by providing tools that show how attackers think — and how you can protect yourself. 
-      From checking if a site is safe, to finding hidden subdomains, every tool here teaches a small but 
-      powerful concept in online safety.
-    </p>
-  </section>
+      <form id="gateForm" class="flex flex-col gap-3" onsubmit="return false;">
+        <div class="relative">
+          <input id="passwordInput" type="password" autocomplete="current-password"
+                 class="w-full px-4 py-3 rounded-xl bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                 placeholder="Enter password" aria-label="Password" />
+          <button type="button" id="toggleShow" title="Show/Hide" class="absolute right-2 top-1/2 -translate-y-1/2 text-sm text-gray-400 hover:text-gray-200">Show</button>
+        </div>
 
-  <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
-    <a href="filescan.html" class="bg-gray-800 hover:bg-purple-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
-      <h2 class="text-xl font-semibold text-purple-400 group-hover:text-white">🗂️ File / Link Malware Scan</h2>
-      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Scan a downloadable file link using VirusTotal to check if it’s malicious.</p>
-    </a>
+        <button id="submitBtn" type="submit"
+                class="w-full py-3 rounded-xl bg-purple-600 hover:bg-purple-700 transition font-semibold">
+          Unlock
+        </button>
+      </form>
 
-    <a href="sub-check.html" class="bg-gray-800 hover:bg-pink-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
-      <h2 class="text-xl font-semibold text-pink-400 group-hover:text-white">🌐 SubDomain Finder</h2>
-      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Find all SubDomain's a company has Made.</p>
-    </a>
-    
-    <a href="urlscan.html" class="bg-gray-800 hover:bg-green-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
-      <h2 class="text-xl font-semibold text-green-400 group-hover:text-white">🔗 URL Safety Check</h2>
-      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Verify if a website is flagged as unsafe by Google Safe Browsing.</p>
-    </a>
+      <p id="errorMsg" class="text-sm text-red-400 mt-4 invisible" role="status"></p>
 
-<<<<<<< HEAD
-    <a href="willbeaddedsoon.html" class="bg-gray-800 hover:bg-red-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
-      <h2 class="text-xl font-semibold text-red-400 group-hover:text-white">🔑 Password Leak Checker</h2>
-      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your password appeared in known data breaches.</p>
-    </a>
+      <p class="text-xs text-gray-500 mt-6">Tip: press Enter after typing password</p>
+    </div>
+  </div>
 
-    <a href="willbeaddedsoon.html" class="bg-gray-800 hover:bg-yellow-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
-      <h2 class="text-xl font-semibold text-yellow-400 group-hover:text-white">🎣 Phishing Awareness</h2>
-      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Learn how phishing works and try an interactive phishing simulation.</p>
-    </a>
-=======
-    <a href="feature/password-strength.html" class="bg-gray-800 hover:bg-teal-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
-      <h2 class="text-xl font-semibold text-teal-400 group-hover:text-white">🧠 Password Strength</h2>
-      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Generate a strong password and check for breaches.</p>
-    </a>
+  <!-- MAIN CONTENT: hidden until password is correct -->
+  <main id="mainContent" class="invisible opacity-0 transition-opacity duration-300">
+    <div class="flex flex-col items-center px-4 py-8 gap-10 min-h-screen">
+      <header class="text-center max-w-2xl">
+        <h1 class="text-4xl sm:text-5xl font-bold text-purple-400 mb-4">👋 Welcome to Raina</h1>
+        <p class="text-lg text-gray-300">
+          This is a <span class="text-green-400 font-semibold">school project</span> coded and hosted by
+          <span class="text-yellow-400 font-bold">Aman & Ranveer</span>.
+          <br>Explore tools for phishing awareness, cybersecurity, and OSINT basics.
+        </p>
+      </header>
 
-    <a href="feature/password-checker.html" class="bg-gray-800 hover:bg-teal-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
-        <h2 class="text-xl font-semibold text-teal-400 group-hover:text-white">📊 Password Analyzer</h2>
-        <p class="text-gray-400 group-hover:text-gray-200 text-sm">See how strong your password is and get suggestions.</p>
-      </a>
+      <section class="max-w-3xl bg-gray-800 text-gray-300 p-6 rounded-2xl shadow-lg text-center leading-relaxed">
+        <p>
+          🛡️ In today’s digital world, security is more important than ever. Hackers often exploit weak passwords,
+          phishing links, and exposed subdomains to gain access to sensitive information.
+          <br><br>
+          This project is designed to raise awareness about <span class="text-purple-300 font-semibold">cybersecurity</span>
+          by providing tools that show how attackers think — and how you can protect yourself.
+        </p>
+      </section>
 
-      <a href="feature/password-breach.html" class="bg-gray-800 hover:bg-red-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
-        <h2 class="text-xl font-semibold text-red-400 group-hover:text-white">🔑 Password Leak Checker</h2>
-        <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your password appeared in known data breaches.</p>
-      </a>
->>>>>>> 06628df (Added: pass/email breach check feature)
+      <section class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
+        <a href="feature/filescan.html" class="bg-gray-800 hover:bg-purple-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+          <h2 class="text-xl font-semibold text-purple-400 group-hover:text-white">🗂️ File / Link Malware Scan</h2>
+          <p class="text-gray-400 group-hover:text-gray-200 text-sm">Scan a downloadable file link using VirusTotal to check if it’s malicious.</p>
+        </a>
 
-    <a href="willbeaddedsoon.html" class="bg-gray-800 hover:bg-blue-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
-      <h2 class="text-xl font-semibold text-blue-400 group-hover:text-white">💻 Device Info</h2>
-      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See what details your browser leaks — user agent, platform, and more.</p>
-    </a>
+        <!--<a href="feature/sub-check.html" class="bg-gray-800 hover:bg-pink-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+          <h2 class="text-xl font-semibold text-pink-400 group-hover:text-white">🌐 SubDomain Finder</h2>
+          <p class="text-gray-400 group-hover:text-gray-200 text-sm">Find all SubDomain's a company has Made.</p>
+        </a>-->
 
-<<<<<<< HEAD
-    <a href="willbeaddedsoon.html" class="bg-gray-800 hover:bg-pink-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
-=======
+        <a href="feature/urlscan.html" class="bg-gray-800 hover:bg-green-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+          <h2 class="text-xl font-semibold text-green-400 group-hover:text-white">🔗 URL Safety Check</h2>
+          <p class="text-gray-400 group-hover:text-gray-200 text-sm">Verify if a website is flagged as unsafe by Google Safe Browsing.</p>
+        </a>
 
-    <a href="feature/email-breach.html" class="bg-gray-800 hover:bg-pink-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
->>>>>>> 06628df (Added: pass/email breach check feature)
-      <h2 class="text-xl font-semibold text-pink-400 group-hover:text-white">📧 Email Breach Checker</h2>
-      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your email was involved in any public data breach.</p>
-    </a>
+        <a href="feature/password-strength.html" class="bg-gray-800 hover:bg-teal-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+          <h2 class="text-xl font-semibold text-teal-400 group-hover:text-white">🧠 Password Strength</h2>
+          <p class="text-gray-400 group-hover:text-gray-200 text-sm">Generate a strong password and check for breaches.</p>
+        </a>
 
-    <a href="feature/aware-phish.html" class="bg-gray-800 hover:bg-yellow-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
-        <h2 class="text-xl font-semibold text-yellow-400 group-hover:text-white">🎣 Phishing Awareness</h2>
-        <p class="text-gray-400 group-hover:text-gray-200 text-sm">Learn how phishing works and try an interactive phishing simulation.</p>
-      </a>
+        <a href="feature/password-checker.html" class="bg-gray-800 hover:bg-teal-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+          <h2 class="text-xl font-semibold text-teal-400 group-hover:text-white">📊 Password Analyzer</h2>
+          <p class="text-gray-400 group-hover:text-gray-200 text-sm">See how strong your password is and get suggestions.</p>
+        </a>
 
-    <a href="willbeaddedsoon.html" class="bg-gray-800 hover:bg-indigo-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
-      <h2 class="text-xl font-semibold text-indigo-400 group-hover:text-white">🔐 Hash Generator</h2>
-      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Generate MD5, SHA-1, and SHA-256 hashes from your input.</p>
-    </a>
+        <a href="feature/password-breach.html" class="bg-gray-800 hover:bg-red-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+          <h2 class="text-xl font-semibold text-red-400 group-hover:text-white">🔑 Password Leak Checker</h2>
+          <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your password appeared in known data breaches.</p>
+        </a>
 
-    <a href="willbeaddedsoon.html" class="bg-gray-800 hover:bg-orange-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
-      <h2 class="text-xl font-semibold text-orange-400 group-hover:text-white">🌍 IP Lookup</h2>
-      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check IP address details like location, ISP, and geodata.</p>
-    </a>
+        <a href="feature/your-deviceinfo.html" class="bg-gray-800 hover:bg-blue-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+          <h2 class="text-xl font-semibold text-blue-400 group-hover:text-white">💻 Device Info</h2>
+          <p class="text-gray-400 group-hover:text-gray-200 text-sm">See what details your browser leaks — user agent, platform, and more.</p>
+        </a>
 
-    <a href="willbeaddedsoon.html" class="bg-gray-800 hover:bg-lime-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
-      <h2 class="text-xl font-semibold text-lime-400 group-hover:text-white">🔍 Link Analyzer</h2>
-      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Get full redirection paths, shortened links, and headers.</p>
-    </a>
+        <a href="feature/email-breach.html" class="bg-gray-800 hover:bg-pink-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+          <h2 class="text-xl font-semibold text-pink-400 group-hover:text-white">📧 Email Breach Checker</h2>
+          <p class="text-gray-400 group-hover:text-gray-200 text-sm">Check if your email was involved in any public data breach.</p>
+        </a>
 
-    <a href="willbeaddedsoon.html" class="bg-gray-800 hover:bg-teal-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
-      <h2 class="text-xl font-semibold text-teal-400 group-hover:text-white">🧠 Password Strength</h2>
-      <p class="text-gray-400 group-hover:text-gray-200 text-sm">See how strong your password is and get suggestions.</p>
-    </a>
+        <a href="feature/aware-phish.html" class="bg-gray-800 hover:bg-yellow-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+          <h2 class="text-xl font-semibold text-yellow-400 group-hover:text-white">🎣 Phishing Awareness</h2>
+          <p class="text-gray-400 group-hover:text-gray-200 text-sm">Learn how phishing works and try an interactive phishing simulation.</p>
+        </a>
 
-    <a href="willbeaddedsoon.html" class="bg-gray-800 hover:bg-cyan-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
-      <h2 class="text-xl font-semibold text-cyan-400 group-hover:text-white">📷 QR Code Decoder</h2>
-      <p class="text-gray-400 group-hover:text-gray-200 text-sm">Upload a QR image and extract the encoded URL or message.</p>
-    </a>
-  </section>
+        <a href="feature/hash-gen.html" class="bg-gray-800 hover:bg-indigo-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+          <h2 class="text-xl font-semibold text-indigo-400 group-hover:text-white">🔐 Hash Generator</h2>
+          <p class="text-gray-400 group-hover:text-gray-200 text-sm">Generate MD5, SHA-1, and SHA-256 hashes from your input.</p>
+        </a>
 
-  <footer class="text-sm text-gray-500 mt-12">
-    © 2025 Raina by Ranveer • Made with ❤️ for hackclub
-  </footer>
+        <a href="feature/ip-info.html" class="bg-gray-800 hover:bg-orange-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+          <h2 class="text-xl font-semibold text-orange-400 group-hover:text-white">🌍 IP Lookup</h2>
+          <p class="text-gray-400 group-hover:text-gray-200 text-sm">Shows how much information can be retrived about you just by using your IP address details like location, ISP, and geodata.</p>
+        </a>
 
+        <a href="willbeaddedsoon.html" class="bg-gray-800 hover:bg-lime-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+          <h2 class="text-xl font-semibold text-lime-400 group-hover:text-white">🔍 Link Analyzer {willbeaddedsoon}</h2>
+          <p class="text-gray-400 group-hover:text-gray-200 text-sm">Get full redirection paths, shortened links, and headers.</p>
+        </a>
+
+        <a href="willbeaddedsoon.html" class="bg-gray-800 hover:bg-cyan-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+          <h2 class="text-xl font-semibold text-cyan-400 group-hover:text-white">📷 QR Code Decoder {willbeaddedsoon}</h2>
+          <p class="text-gray-400 group-hover:text-gray-200 text-sm">Upload a QR image and extract the encoded URL or message.</p>
+        </a>
+
+        <a href="feature/about.html" class="bg-gray-800 hover:bg-yellow-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
+          <h2 class="text-xl font-semibold text-yellow-400 group-hover:text-white">👥 About</h2>
+          <p class="text-gray-400 group-hover:text-gray-200 text-sm">Team members of group project.</p>
+        </a>
+      </section>
+
+      <footer class="text-sm text-gray-500 mt-12">
+        © 2025 Raina by Ranveer • Made with ❤️ for hackclub
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      // HARD-CODED PASSWORD (demo only)
+      const CORRECT = "raina@security";
+
+      // DOM refs
+      const gate = document.getElementById("passwordGate");
+      const main = document.getElementById("mainContent");
+      const form = document.getElementById("gateForm");
+      const input = document.getElementById("passwordInput");
+      const err = document.getElementById("errorMsg");
+      const toggle = document.getElementById("toggleShow");
+
+      // Lock scrolling while gate is active
+      document.body.classList.add("lock-scroll");
+
+      // Toggle show/hide
+      toggle.addEventListener("click", () => {
+        if (input.type === "password") {
+          input.type = "text";
+          toggle.textContent = "Hide";
+        } else {
+          input.type = "password";
+          toggle.textContent = "Show";
+        }
+        input.focus();
+      });
+
+      // Handle form submit (Enter or button)
+      function unlockAttempt() {
+        const val = input.value ?? "";
+        if (val === CORRECT) {
+          // success -> reveal main content
+          err.classList.remove("fade-in");
+          err.classList.add("invisible");
+          gate.classList.add("fade-out");
+          setTimeout(() => {
+            gate.style.display = "none";
+            main.classList.remove("invisible");
+            main.classList.add("fade-in");
+            main.style.opacity = "1";
+            document.body.classList.remove("lock-scroll");
+            // clear password field (optional)
+            input.value = "";
+          }, 320);
+        } else {
+          // failure -> show error
+          err.textContent = "Incorrect password — try again.";
+          err.classList.remove("invisible");
+          err.classList.add("fade-in");
+          // small shake animation (optional)
+          gate.animate(
+            [{ transform: "translateX(0)" }, { transform: "translateX(-6px)" }, { transform: "translateX(6px)" }, { transform: "translateX(0)" }],
+            { duration: 260, easing: "ease" }
+          );
+          input.value = "";
+          input.focus();
+        }
+      }
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        unlockAttempt();
+      });
+
+      // Allow submit via Enter key (already normal), focus input on load
+      window.addEventListener("load", () => input.focus());
+
+      // Optional: prevent copy/paste into field to reduce accidental leaking
+      input.addEventListener("paste", (e) => e.preventDefault());
+    })();
+  </script>
 </body>
 </html>

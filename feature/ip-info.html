@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>IP Info & Map — Cyber Backend</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- ✅ Leaflet CSS (without integrity to prevent blocking) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <style>
+    :root {
+      --bg: #0f1724;
+      --card: #0b1220;
+      --muted: #9aa4b2;
+      --accent: #22c55e;
+      --shadow: 0 6px 24px rgba(2, 6, 23, 0.6);
+      --text: #e6eef6;
+    }
+
+    body {
+      margin: 0;
+      padding: 30px;
+      background: radial-gradient(circle at top left, #0f172a, #020617);
+      font-family: "Inter", system-ui, sans-serif;
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+    }
+
+    .wrap {
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 20px;
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .logo {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg,#12b981,#0ea5a4);
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      color: #000;
+    }
+
+    h1 { font-size: 18px; margin: 0; }
+    p { font-size: 13px; color: var(--muted); margin: 4px 0 12px; }
+
+    .pill {
+      background: rgba(255,255,255,0.05);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--muted);
+      display: inline-block;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .field {
+      background: rgba(255,255,255,0.02);
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .field label {
+      font-size: 12px;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .field .value {
+      font-weight: 600;
+      font-size: 14px;
+      word-break: break-word;
+    }
+
+    #map {
+      height: 520px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    button {
+      background: linear-gradient(90deg, #12b981, #06b6d4);
+      border: none;
+      color: #000;
+      font-weight: 600;
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-right: 6px;
+    }
+
+    button:hover { filter: brightness(1.1); }
+
+    pre {
+      background: rgba(255,255,255,0.03);
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 13px;
+      color: #a7f3d0;
+      max-height: 200px;
+      overflow: auto;
+    }
+
+    @media(max-width:900px){
+      .wrap { grid-template-columns: 1fr; }
+      #map { height: 380px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- LEFT: Info -->
+    <div class="card">
+      <div class="header">
+        <div class="logo">IP</div>
+        <div>
+          <h1>IP Info & Map</h1>
+          <p>Auto-fetched via your backend proxy with live map.</p>
+        </div>
+      </div>
+
+      <div class="pill" id="statusPill">Loading…</div>
+      <div class="pill" id="ipPill">—</div>
+      <div class="pill" id="locPill">—</div>
+
+      <div class="grid" id="fieldsGrid"></div>
+
+      <div class="field">
+        <label>Full JSON (raw)</label>
+        <pre id="rawJson">{ }</pre>
+      </div>
+
+      <button id="refreshBtn">⟳ Refresh</button>
+      <button id="copyBtn">⧉ Copy JSON</button>
+    </div>
+
+    <!-- RIGHT: Map -->
+    <div class="card">
+      <div id="map">Loading map…</div>
+    </div>
+  </div>
+
+  <!-- ✅ Leaflet JS (no integrity attr) -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script>
+    let map, marker;
+
+    const el = id => document.getElementById(id);
+    const setField = (parent, label, val) => {
+      const div = document.createElement("div");
+      div.className = "field";
+      div.innerHTML = `<label>${label}</label><div class="value">${val ?? "—"}</div>`;
+      parent.appendChild(div);
+    };
+
+    async function fetchIP() {
+      const res = await fetch("https://ai-cyber-backend-1.onrender.com/ipinfo");
+      if (!res.ok) throw new Error("Failed to fetch from backend");
+      return res.json();
+    }
+
+    async function load() {
+      const status = el("statusPill");
+      const ip = el("ipPill");
+      const loc = el("locPill");
+      const grid = el("fieldsGrid");
+      const raw = el("rawJson");
+
+      status.textContent = "Loading…";
+      grid.innerHTML = "";
+      raw.textContent = "{ loading... }";
+
+      try {
+        const data = await fetchIP();
+        raw.textContent = JSON.stringify(data, null, 2);
+
+        status.textContent = data.status || "Success";
+        ip.textContent = data.query || "—";
+        loc.textContent = `${data.city || ""}, ${data.regionName || ""}, ${data.country || ""}`;
+
+        const keys = [
+          "query","country","countryCode","region","regionName",
+          "city","zip","lat","lon","timezone","isp","org","as"
+        ];
+
+        keys.forEach(k => setField(grid, k.toUpperCase(), data[k]));
+
+        const lat = Number(data.lat);
+        const lon = Number(data.lon);
+
+        if (!map) {
+          map = L.map("map").setView([lat, lon], 13);
+          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+            attribution: "© OpenStreetMap contributors",
+          }).addTo(map);
+        } else {
+          map.setView([lat, lon], 13);
+          if (marker) map.removeLayer(marker);
+        }
+
+        marker = L.marker([lat, lon]).addTo(map);
+        marker.bindPopup(`<b>${data.query}</b><br>${data.city}, ${data.country}`).openPopup();
+      } catch (err) {
+        console.error(err);
+        status.textContent = "Error";
+        grid.innerHTML = `<div class="field"><label>Error</label><div class="value">${err.message}</div></div>`;
+      }
+    }
+
+    el("refreshBtn").addEventListener("click", load);
+    el("copyBtn").addEventListener("click", () => {
+      navigator.clipboard.writeText(el("rawJson").textContent);
+      el("copyBtn").textContent = "✓ Copied";
+      setTimeout(() => (el("copyBtn").textContent = "⧉ Copy JSON"), 1500);
+    });
+
+    load();
+  </script>
+</body>
+</html>
