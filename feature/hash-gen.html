@@ -2,104 +2,213 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hash Generator</title>
+  <title>Hash Generator – CyberScan</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #111;
-      color: #eee;
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #0a0b0f, #1b1f29);
+      color: #e5e7eb;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       min-height: 100vh;
-      margin: 0;
+      padding: 2rem;
     }
-    .container {
-      background: #222;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.6);
-      max-width: 500px;
+
+    header {
       width: 100%;
+      max-width: 900px;
+      text-align: left;
+      margin-bottom: 2rem;
     }
+
+    header a {
+      color: #9ca3af;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    header a:hover {
+      color: #fff;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(14px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 2rem;
+      max-width: 550px;
+      width: 100%;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .container:hover {
+      box-shadow: 0 10px 50px rgba(59, 130, 246, 0.2);
+      transform: translateY(-4px);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 1.8rem;
+      color: #3b82f6;
+      margin-bottom: 1rem;
+    }
+
     textarea {
       width: 100%;
-      height: 80px;
-      border-radius: 8px;
-      border: none;
-      padding: 10px;
-      margin-bottom: 15px;
-      font-size: 16px;
+      height: 90px;
+      border-radius: 12px;
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      background: rgba(0, 0, 0, 0.4);
+      color: #fff;
+      padding: 12px;
+      font-size: 1rem;
       resize: vertical;
+      transition: 0.3s;
     }
+
+    textarea:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+    }
+
     select, button {
-      padding: 10px;
-      margin: 5px 0;
-      border-radius: 8px;
+      padding: 0.9rem;
+      border-radius: 12px;
       border: none;
-      font-size: 16px;
-      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 10px;
+      width: 100%;
+      transition: all 0.3s ease;
     }
+
+    select {
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
     button {
-      background: #00b894;
+      background: linear-gradient(90deg, #2563eb, #06b6d4);
       color: white;
-      font-weight: bold;
-    }
-    button:hover {
-      background: #019875;
-    }
-    .output {
+      font-weight: 600;
+      cursor: pointer;
       margin-top: 15px;
-      word-wrap: break-word;
-      font-family: monospace;
-      background: #333;
-      padding: 10px;
-      border-radius: 8px;
+      border: none;
+    }
+
+    button:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
+    }
+
+    .output {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 10px;
+      font-family: "Courier New", monospace;
+      color: #93c5fd;
+      word-break: break-word;
+      font-size: 0.95rem;
+      text-align: left;
+    }
+
+    .info {
+      margin-top: 2rem;
+      background: rgba(255, 255, 255, 0.04);
+      border-left: 4px solid #3b82f6;
+      padding: 1rem;
+      border-radius: 10px;
+      color: #d1d5db;
+      line-height: 1.5;
+    }
+
+    footer {
+      margin-top: auto;
+      color: #9ca3af;
+      font-size: 0.9rem;
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    footer span {
+      color: #3b82f6;
+      font-weight: 600;
     }
   </style>
 </head>
 <body>
+  <header>
+    <a href="../index.html">← Back</a>
+  </header>
+
   <div class="container">
     <h2>🔒 Hash Generator</h2>
-    <textarea id="inputText" placeholder="Enter text here..."></textarea>
+
+    <textarea id="inputText" placeholder="Enter text to hash..."></textarea>
+
     <select id="algo">
-      <option value="SHA-256">SHA-256</option>
-      <option value="SHA-512">SHA-512</option>
-      <option value="SHA-1">SHA-1</option>
-      <option value="MD5">MD5 (requires JS lib)</option>
+      <option value="md5">MD5</option>
+      <option value="sha1">SHA-1</option>
+      <option value="sha224">SHA-224</option>
+      <option value="sha256" selected>SHA-256</option>
+      <option value="sha384">SHA-384</option>
+      <option value="sha512">SHA-512</option>
+      <option value="sha3-224">SHA3-224</option>
+      <option value="sha3-256">SHA3-256</option>
+      <option value="sha3-384">SHA3-384</option>
+      <option value="sha3-512">SHA3-512</option>
     </select>
+
     <button onclick="generateHash()">Generate Hash</button>
+
     <div class="output" id="output">Your hash will appear here...</div>
+
+    <div class="info">
+      <strong>🔍 Why Hashing Matters:</strong>
+      <ul>
+        <li>✅ Ensures <b>data integrity</b> — even one character change creates a new hash.</li>
+        <li>🔐 Used for <b>secure password storage</b> (never store raw passwords).</li>
+        <li>🧾 Helps verify <b>file authenticity</b> using checksums (e.g., SHA-256).</li>
+        <li>⚙️ Important in <b>digital signatures</b> and blockchain security.</li>
+      </ul>
+    </div>
   </div>
+
+  <footer>
+    Built by <span>Ranveer</span> | CyberScan Project
+  </footer>
 
   <script>
     async function generateHash() {
-      const text = document.getElementById("inputText").value;
+      const text = document.getElementById("inputText").value.trim();
       const algo = document.getElementById("algo").value;
+      const output = document.getElementById("output");
 
       if (!text) {
-        document.getElementById("output").innerText = "Please enter some text.";
+        output.innerText = "⚠️ Please enter text to hash.";
         return;
       }
 
-      if (algo === "MD5") {
-  
-        document.getElementById("output").innerText = md5(text);
-        return;
+      output.innerText = "⏳ Generating hash...";
+
+      try {
+        const res = await fetch(`https://api.hashify.net/hash/${algo}/hex?value=${encodeURIComponent(text)}`);
+        const data = await res.json();
+        if (data.Digest) {
+          output.innerText = data.Digest;
+        } else {
+          output.innerText = "❌ Failed to generate hash. Check input or try another algorithm.";
+        }
+      } catch (e) {
+        output.innerText = "❌ Error connecting to Hashify API.";
       }
-
-      const encoder = new TextEncoder();
-      const data = encoder.encode(text);
-      const hashBuffer = await crypto.subtle.digest(algo, data);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
-      document.getElementById("output").innerText = hashHex;
-    }
-
-    function md5cycle(x, k) {
-    
-      return "MD5 not fully implemented in this snippet.";
     }
   </script>
 </body>

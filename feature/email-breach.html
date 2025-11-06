@@ -79,7 +79,7 @@
 
 
   body {
-      background: url("wallpapers/8.jpg") no-repeat center center fixed;
+      background: url("wallpapers/10.jpg") no-repeat center center fixed;
       background-size: cover;
       position: relative;
     }
@@ -134,11 +134,11 @@
         return;
       }
 
-      const hibpUrl = `https://haveibeenpwned.com/unifiedsearch/${encodeURIComponent(email)}`;
+      const hibpUrl = `https://haveibeenpwned.com/`;
 
       prettyBox.innerHTML = `
         <h3 class="text-xl font-bold text-cyan-400">🔗 HIBP Link</h3>
-        <p class="mt-2 text-gray-300">Click the link below to view breach information:</p>
+        <p class="mt-2 text-gray-300">Click the link below and enter your email to view breach information:</p>
         <a href="${hibpUrl}" target="_blank" class="text-yellow-400 font-semibold break-all hover:underline">${hibpUrl}</a>
       `;
       prettyBox.classList.remove("hidden");
