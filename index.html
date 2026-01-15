@@ -6,51 +6,14 @@
   <title>Raina – School Project by Ranveer</title>
   <link rel="icon" type="image/png" href="favicon.png">
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* Smooth reveal/hide */
-    .fade-in { animation: fadeIn .35s ease forwards; }
-    .fade-out { animation: fadeOut .35s ease forwards; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
-
-    /* Prevent body from being scrollable while gate is active */
-    body.lock-scroll { overflow: hidden; height: 100vh; }
-  </style>
 </head>
 <body class="bg-gray-950 text-white font-sans min-h-screen">
 
-  <!-- PASSWORD GATE: visible initially -->
-  <div id="passwordGate" class="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-6">
-    <div class="w-full max-w-md bg-gray-900/90 border border-gray-800 rounded-2xl p-8 shadow-2xl text-center">
-      <h1 class="text-2xl font-bold text-purple-300 mb-4">🔐 Enter password to open Raina</h1>
-      <p class="text-sm text-gray-400 mb-6">This project is for demo purposes. Enter the password to continue.</p>
-
-      <form id="gateForm" class="flex flex-col gap-3" onsubmit="return false;">
-        <div class="relative">
-          <input id="passwordInput" type="password" autocomplete="current-password"
-                 class="w-full px-4 py-3 rounded-xl bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                 placeholder="Enter password" aria-label="Password" />
-          <button type="button" id="toggleShow" title="Show/Hide" class="absolute right-2 top-1/2 -translate-y-1/2 text-sm text-gray-400 hover:text-gray-200">Show</button>
-        </div>
-
-        <button id="submitBtn" type="submit"
-                class="w-full py-3 rounded-xl bg-purple-600 hover:bg-purple-700 transition font-semibold">
-          Unlock
-        </button>
-      </form>
-    
-
-      <p id="errorMsg" class="text-sm text-red-400 mt-4 invisible" role="status"></p>
-
-      <p class="text-xs text-gray-500 mt-6">Tip: press Enter after typing password</p>
-    </div>
-  </div>
-
-  <!-- MAIN CONTENT: hidden until password is correct -->
-  <main id="mainContent" class="invisible opacity-0 transition-opacity duration-300">
+  <!-- MAIN CONTENT (password gate removed) -->
+  <main id="mainContent" class="opacity-100">
     <div class="flex flex-col items-center px-4 py-8 gap-10 min-h-screen">
       <header class="text-center max-w-2xl">
-        <h1 class="text-4xl sm:text-5xl font-bold text-purple-400 mb-4">👋 Welcome to Raina</h1>
+        <h1 class="text-4xl sm:text-5xl font-bold text-purple-400 mb-4">👋 Welcome to Raina</h1> 
         <p class="text-lg text-gray-300">
           This is a <span class="text-green-400 font-semibold">school project</span> coded and hosted by
           <span class="text-yellow-400 font-bold">Aman & Ranveer</span>.
@@ -73,11 +36,6 @@
           <h2 class="text-xl font-semibold text-purple-400 group-hover:text-white">🗂️ File / Link Malware Scan</h2>
           <p class="text-gray-400 group-hover:text-gray-200 text-sm">Scan a downloadable file link using VirusTotal to check if it’s malicious.</p>
         </a>
-
-        <!--<a href="feature/sub-check.html" class="bg-gray-800 hover:bg-pink-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
-          <h2 class="text-xl font-semibold text-pink-400 group-hover:text-white">🌐 SubDomain Finder</h2>
-          <p class="text-gray-400 group-hover:text-gray-200 text-sm">Find all SubDomain's a company has Made.</p>
-        </a>-->
 
         <a href="feature/urlscan.html" class="bg-gray-800 hover:bg-green-700 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
           <h2 class="text-xl font-semibold text-green-400 group-hover:text-white">🔗 URL Safety Check</h2>
@@ -121,7 +79,7 @@
 
         <a href="feature/ip-info.html" class="bg-gray-800 hover:bg-orange-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
           <h2 class="text-xl font-semibold text-orange-400 group-hover:text-white">🌍 IP Lookup</h2>
-          <p class="text-gray-400 group-hover:text-gray-200 text-sm">Shows how much information can be retrived about you just by using your IP address details like location, ISP, and geodata.</p>
+          <p class="text-gray-400 group-hover:text-gray-200 text-sm">Shows how much information can be retrived about you just by using your IP address.</p>
         </a>
 
         <a href="feature/link-analyzer.html" class="bg-gray-800 hover:bg-lime-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
@@ -131,7 +89,7 @@
 
         <a href="feature/qr-decode.html" class="bg-gray-800 hover:bg-cyan-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
           <h2 class="text-xl font-semibold text-cyan-400 group-hover:text-white">📷 QR Code Decoder</h2>
-          <p class="text-gray-400 group-hover:text-gray-200 text-sm">Don't scan any QR Code you see check here if its safe or not. Upload QR image and extract the encoded URL or message.</p>
+          <p class="text-gray-400 group-hover:text-gray-200 text-sm">Upload a QR image and extract the encoded URL or message.</p>
         </a>
 
         <a href="feature/about.html" class="bg-gray-800 hover:bg-yellow-600 transition p-6 rounded-2xl shadow-lg flex flex-col gap-2 group">
@@ -141,83 +99,10 @@
       </section>
 
       <footer class="text-sm text-gray-500 mt-12">
-        © 2025 Raina by Ranveer • Made with ❤️ for hackclub
+        © 2025 Raina by Ranveer
       </footer>
     </div>
   </main>
-
-  <script>
-    (function () {
-      // HARD-CODED PASSWORD (demo only)
-      const CORRECT = "raina@security";
-
-      // DOM refs
-      const gate = document.getElementById("passwordGate");
-      const main = document.getElementById("mainContent");
-      const form = document.getElementById("gateForm");
-      const input = document.getElementById("passwordInput");
-      const err = document.getElementById("errorMsg");
-      const toggle = document.getElementById("toggleShow");
-
-      // Lock scrolling while gate is active
-      document.body.classList.add("lock-scroll");
-
-      // Toggle show/hide
-      toggle.addEventListener("click", () => {
-        if (input.type === "password") {
-          input.type = "text";
-          toggle.textContent = "Hide";
-        } else {
-          input.type = "password";
-          toggle.textContent = "Show";
-        }
-        input.focus();
-      });
-
-      // Handle form submit (Enter or button)
-      function unlockAttempt() {
-        const val = input.value ?? "";
-        if (val === CORRECT) {
-          // success -> reveal main content
-          err.classList.remove("fade-in");
-          err.classList.add("invisible");
-          gate.classList.add("fade-out");
-          setTimeout(() => {
-            gate.style.display = "none";
-            main.classList.remove("invisible");
-            main.classList.add("fade-in");
-            main.style.opacity = "1";
-            document.body.classList.remove("lock-scroll");
-            // clear password field (optional)
-            input.value = "";
-          }, 320);
-        } else {
-          // failure -> show error
-          err.textContent = "Incorrect password — try again.";
-          err.classList.remove("invisible");
-          err.classList.add("fade-in");
-          // small shake animation (optional)
-          gate.animate(
-            [{ transform: "translateX(0)" }, { transform: "translateX(-6px)" }, { transform: "translateX(6px)" }, { transform: "translateX(0)" }],
-            { duration: 260, easing: "ease" }
-          );
-          input.value = "";
-          input.focus();
-        }
-      }
-
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        unlockAttempt();
-      });
-
-      // Allow submit via Enter key (already normal), focus input on load
-      window.addEventListener("load", () => input.focus());
-
-      // Optional: prevent copy/paste into field to reduce accidental leaking
-      input.addEventListener("paste", (e) => e.preventDefault());
-    })();
-  </script>
 
 </body>
 </html>
