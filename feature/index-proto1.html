@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Raina – School Project by Ranveer</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background:
+        radial-gradient(1200px circle at 20% 10%, rgba(168,85,247,0.15), transparent 40%),
+        radial-gradient(1000px circle at 80% 20%, rgba(59,130,246,0.12), transparent 45%),
+        linear-gradient(180deg, #05070f 0%, #070a16 100%);
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(18px) saturate(140%);
+      -webkit-backdrop-filter: blur(18px) saturate(140%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        0 20px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .glass-soft {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(16px) saturate(140%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.22),
+        0 16px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.045);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        0 18px 35px rgba(0, 0, 0, 0.45);
+    }
+
+    .glass-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-4px);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.35),
+        0 28px 55px rgba(0, 0, 0, 0.55);
+    }
+  </style>
+</head>
+
+<body class="text-white font-sans min-h-screen overflow-x-hidden">
+
+  <!-- Soft Glow Background -->
+  <div class="pointer-events-none fixed inset-0 flex items-center justify-center">
+    <div class="w-[520px] h-[520px] rounded-full 
+      bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 
+      blur-[180px] opacity-20">
+    </div>
+  </div>
+
+  <main id="mainContent" class="relative z-10">
+    <div class="flex flex-col items-center px-4 py-12 gap-16 min-h-screen">
+
+      <!-- Header -->
+      <header class="text-center max-w-3xl glass rounded-[2.2rem] px-10 py-10">
+        <div class="flex justify-center mb-6">
+          <img src="download.png" alt="Raina Logo" class="w-24 h-24 drop-shadow-[0_0_30px_rgba(168,85,247,0.6)]">
+        </div>
+
+        <h1 class="text-5xl sm:text-6xl font-extrabold 
+          bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 
+          bg-clip-text text-transparent mb-6">
+          Welcome to Raina
+        </h1>
+
+        <p class="text-lg sm:text-xl text-gray-200 leading-relaxed">
+          A <span class="text-green-400 font-semibold">cybersecurity awareness project</span>  
+          built and hosted by <span class="text-yellow-400 font-bold">Ranveer</span>.
+          <br class="hidden sm:block">
+          Explore tools for phishing awareness, OSINT basics, and digital hygiene.
+        </p>
+      </header>
+
+      <!-- About Section -->
+      <section class="max-w-4xl glass-soft text-gray-200 p-10 rounded-[2.4rem] text-center leading-relaxed">
+        <p>
+          🛡️ In today’s digital world, attackers exploit weak passwords, phishing links,
+          and exposed infrastructure to steal data and compromise accounts.
+          <br><br>
+          <span class="text-purple-300 font-semibold">Raina</span> demonstrates how
+          these attacks work and how you can protect yourself — using real-world tools
+          and workflows.
+        </p>
+      </section>
+
+      <!-- Feature Grid -->
+      <section class="grid gap-7 sm:grid-cols-2 lg:grid-cols-3 w-full max-w-7xl">
+
+        <!-- Cards -->
+        <a href="feature/filescan.html" class="group glass-card rounded-[2rem] p-7 transition-all duration-300">
+          <h2 class="text-xl font-semibold text-purple-300 group-hover:text-white">
+            🗂️ File / Link Malware Scan
+          </h2>
+          <p class="text-gray-300 group-hover:text-gray-100 text-sm mt-2">
+            Scan a downloadable file link using VirusTotal to detect malware.
+          </p>
+        </a>
+
+        <a href="feature/urlscan.html" class="group glass-card rounded-[2rem] p-7 transition-all duration-300">
+          <h2 class="text-xl font-semibold text-green-300 group-hover:text-white">
+            🔗 URL Safety Check
+          </h2>
+          <p class="text-gray-300 group-hover:text-gray-100 text-sm mt-2">
+            Verify if a website is flagged by Google Safe Browsing.
+          </p>
+        </a>
+
+        <a href="feature/password-checker.html" class="group glass-card rounded-[2rem] p-7 transition-all duration-300">
+          <h2 class="text-xl font-semibold text-teal-300 group-hover:text-white">
+            🧠 Password Generator
+          </h2>
+          <p class="text-gray-300 group-hover:text-gray-100 text-sm mt-2">
+            Generate strong passwords and check breach exposure.
+          </p>
+        </a>
+
+        <a href="feature/password-strength.html" class="group glass-card rounded-[2rem] p-7 transition-all duration-300">
+          <h2 class="text-xl font-semibold text-teal-300 group-hover:text-white">
+            📊 Password Analyzer
+          </h2>
+          <p class="text-gray-300 group-hover:text-gray-100 text-sm mt-2">
+            Analyze password strength and entropy.
+          </p>
+        </a>
+
+        <a href="feature/password-breach.html" class="group glass-card rounded-[2rem] p-7 transition-all duration-300">
+          <h2 class="text-xl font-semibold text-red-300 group-hover:text-white">
+            🔑 Password Leak Checker
+          </h2>
+          <p class="text-gray-300 group-hover:text-gray-100 text-sm mt-2">
+            Check if your password appeared in breaches.
+          </p>
+        </a>
+
+        <a href="feature/your-deviceinfo.html" class="group glass-card rounded-[2rem] p-7 transition-all duration-300">
+          <h2 class="text-xl font-semibold text-blue-300 group-hover:text-white">
+            💻 Device Info
+          </h2>
+          <p class="text-gray-300 group-hover:text-gray-100 text-sm mt-2">
+            See what your browser leaks about you.
+          </p>
+        </a>
+
+        <a href="feature/email-breach.html" class="group glass-card rounded-[2rem] p-7 transition-all duration-300">
+          <h2 class="text-xl font-semibold text-pink-300 group-hover:text-white">
+            📧 Email Breach Checker
+          </h2>
+          <p class="text-gray-300 group-hover:text-gray-100 text-sm mt-2">
+            Check if your email appeared in breaches.
+          </p>
+        </a>
+
+        <a href="feature/aware-phish.html" class="group glass-card rounded-[2rem] p-7 transition-all duration-300">
+          <h2 class="text-xl font-semibold text-yellow-300 group-hover:text-white">
+            🎣 Phishing Awareness
+          </h2>
+          <p class="text-gray-300 group-hover:text-gray-100 text-sm mt-2">
+            Learn phishing techniques and defenses.
+          </p>
+        </a>
+
+        <a href="feature/hash-gen.html" class="group glass-card rounded-[2rem] p-7 transition-all duration-300">
+          <h2 class="text-xl font-semibold text-indigo-300 group-hover:text-white">
+            🔐 Hash Generator
+          </h2>
+          <p class="text-gray-300 group-hover:text-gray-100 text-sm mt-2">
+            Generate MD5, SHA-1, SHA-256 hashes.
+          </p>
+        </a>
+
+        <a href="feature/ip-info.html" class="group glass-card rounded-[2rem] p-7 transition-all duration-300">
+          <h2 class="text-xl font-semibold text-orange-300 group-hover:text-white">
+            🌍 IP Lookup
+          </h2>
+          <p class="text-gray-300 group-hover:text-gray-100 text-sm mt-2">
+            See what your IP reveals about you.
+          </p>
+        </a>
+
+        <a href="feature/link-analyzer.html" class="group glass-card rounded-[2rem] p-7 transition-all duration-300">
+          <h2 class="text-xl font-semibold text-lime-300 group-hover:text-white">
+            🔍 Link Analyzer
+          </h2>
+          <p class="text-gray-300 group-hover:text-gray-100 text-sm mt-2">
+            Resolve redirects and inspect headers.
+          </p>
+        </a>
+
+        <a href="feature/qr-decode.html" class="group glass-card rounded-[2rem] p-7 transition-all duration-300">
+          <h2 class="text-xl font-semibold text-cyan-300 group-hover:text-white">
+            📷 QR Decoder
+          </h2>
+          <p class="text-gray-300 group-hover:text-gray-100 text-sm mt-2">
+            Decode QR images into URLs or text.
+          </p>
+        </a>
+
+        <a href="feature/about.html" class="group glass-card rounded-[2rem] p-7 transition-all duration-300">
+          <h2 class="text-xl font-semibold text-yellow-300 group-hover:text-white">
+            👥 About
+          </h2>
+          <p class="text-gray-300 group-hover:text-gray-100 text-sm mt-2">
+            Team members and project info.
+          </p>
+        </a>
+
+      </section>
+
+      <!-- Footer -->
+      <footer class="text-sm text-gray-400 mt-10">
+        © 2026 Raina • Built by Ranveer
+      </footer>
+
+    </div>
+  </main>
+
+</body>
+</html>
