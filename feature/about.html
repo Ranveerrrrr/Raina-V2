@@ -6,6 +6,7 @@
   <title>About – Raina Project Team</title>
   <link rel="icon" type="image/png" href="../download1.png">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
     body {
@@ -41,8 +42,7 @@
         <p class="text-lg sm:text-xl text-gray-300 leading-relaxed">
           Meet the people behind  
           <span class="text-green-400 font-semibold">Raina</span>,  
-          a cybersecurity awareness project built by  
-          <span class="text-yellow-400 font-bold">Ranveer</span>.
+          a cybersecurity awareness project.
         </p>
       </header>
 
@@ -52,13 +52,60 @@
         <!-- Ranveer -->
         <div class="group bg-white/5 backdrop-blur border border-white/10 
           hover:border-blue-500/60 transition rounded-3xl p-6 shadow-xl hover:shadow-blue-500/20 text-center">
-          <img src="pfp/ranveer.png" class="w-28 h-28 mx-auto rounded-full border-4 border-blue-500 mb-4 object-cover">
-          <h2 class="text-xl font-semibold text-blue-400 group-hover:text-white">
+
+          <img src="pfp/ranveer.png"
+               class="w-28 h-28 mx-auto rounded-full border-4 border-blue-500 mb-4 object-cover">
+
+          <!-- Name → Portfolio -->
+          <a href="https://bugatsec.dev"
+             target="_blank" rel="noopener noreferrer"
+             class="block text-xl font-semibold text-blue-400 hover:text-white transition">
             Ranveer
-          </h2>
-          <p class="text-gray-400 group-hover:text-gray-200 text-sm mt-2">
-            Developer & Project Architect
+          </a>
+
+          <p class="text-gray-400 group-hover:text-gray-200 text-sm mt-1">
+            Developer 
           </p>
+
+          <!-- Social Links UNDER name (Portfolio first) -->
+          <div class="flex justify-center gap-4 mt-4">
+
+            <!-- Portfolio -->
+            <a href="https://bugatsec.dev"
+               target="_blank" rel="noopener noreferrer"
+               class="text-indigo-400 hover:text-white transition">
+              <i data-lucide="globe" class="w-5 h-5"></i>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/bugatsec/"
+               target="_blank" rel="noopener noreferrer"
+               class="text-pink-400 hover:text-white transition">
+              <i data-lucide="instagram" class="w-5 h-5"></i>
+            </a>
+
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/ranveerkohli/"
+               target="_blank" rel="noopener noreferrer"
+               class="text-blue-400 hover:text-white transition">
+              <i data-lucide="linkedin" class="w-5 h-5"></i>
+            </a>
+
+            <!-- GitHub -->
+            <a href="https://github.com/Ranveerrrrr/"
+               target="_blank" rel="noopener noreferrer"
+               class="text-gray-300 hover:text-white transition">
+              <i data-lucide="github" class="w-5 h-5"></i>
+            </a>
+
+            <!-- Medium -->
+            <a href="https://bugatsec.medium.com/"
+               target="_blank" rel="noopener noreferrer"
+               class="text-green-400 hover:text-white transition">
+              <i data-lucide="book-open" class="w-5 h-5"></i>
+            </a>
+
+          </div>
         </div>
 
         <!-- Aman -->
@@ -111,8 +158,10 @@
 
       </section>
 
-      <!-- Back Button -->
+      <!-- Back Button - FIXED: Added target and rel attributes -->
       <a href="../index.html"
+         target="_self" 
+         rel="noopener noreferrer"
         class="bg-white/5 backdrop-blur border border-white/10 
         hover:border-indigo-400/60 transition rounded-full px-6 py-3 
         shadow-xl hover:shadow-indigo-500/20 text-gray-300 hover:text-white">
@@ -126,6 +175,10 @@
 
     </div>
   </main>
+
+  <script>
+    lucide.createIcons();
+  </script>
 
 </body>
 </html>
