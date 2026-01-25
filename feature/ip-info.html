@@ -3,188 +3,134 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>IP Info & Map — Cyber Backend</title>
+  <title>IP Info & Map – Raina</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- ✅ Leaflet CSS (without integrity to prevent blocking) -->
+  <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
   <style>
-    :root {
-      --bg: #0f1724;
-      --card: #0b1220;
-      --muted: #9aa4b2;
-      --accent: #22c55e;
-      --shadow: 0 6px 24px rgba(2, 6, 23, 0.6);
-      --text: #e6eef6;
-    }
-
     body {
-      margin: 0;
-      padding: 30px;
-      background: radial-gradient(circle at top left, #0f172a, #020617);
-      font-family: "Inter", system-ui, sans-serif;
-      color: var(--text);
-      display: flex;
-      justify-content: center;
+      background:
+        radial-gradient(1200px circle at 20% 10%, rgba(34,197,94,0.10), transparent 45%),
+        radial-gradient(1000px circle at 80% 20%, rgba(22,163,74,0.08), transparent 50%),
+        linear-gradient(180deg, #020617 0%, #020617 100%);
     }
 
-    .wrap {
-      display: grid;
-      grid-template-columns: 420px 1fr;
-      gap: 20px;
-      width: 100%;
-      max-width: 1100px;
-    }
+    #map { height: 520px; }
 
-    .card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      border-radius: 14px;
-      padding: 18px;
-      box-shadow: var(--shadow);
-    }
-
-    .header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .logo {
-      width: 48px;
-      height: 48px;
-      background: linear-gradient(135deg,#12b981,#0ea5a4);
-      border-radius: 10px;
-      display: grid;
-      place-items: center;
-      font-weight: 700;
-      color: #000;
-    }
-
-    h1 { font-size: 18px; margin: 0; }
-    p { font-size: 13px; color: var(--muted); margin: 4px 0 12px; }
-
-    .pill {
-      background: rgba(255,255,255,0.05);
-      padding: 8px 10px;
-      border-radius: 999px;
-      font-size: 13px;
-      color: var(--muted);
-      display: inline-block;
-      margin-right: 8px;
-      margin-bottom: 8px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-
-    .field {
-      background: rgba(255,255,255,0.02);
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .field label {
-      font-size: 12px;
-      color: var(--muted);
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    .field .value {
-      font-weight: 600;
-      font-size: 14px;
-      word-break: break-word;
-    }
-
-    #map {
-      height: 520px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.05);
-    }
-
-    button {
-      background: linear-gradient(90deg, #12b981, #06b6d4);
-      border: none;
-      color: #000;
-      font-weight: 600;
-      padding: 10px 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.2s;
-      margin-right: 6px;
-    }
-
-    button:hover { filter: brightness(1.1); }
-
-    pre {
-      background: rgba(255,255,255,0.03);
-      padding: 10px;
-      border-radius: 10px;
-      font-size: 13px;
-      color: #a7f3d0;
-      max-height: 200px;
-      overflow: auto;
-    }
-
-    @media(max-width:900px){
-      .wrap { grid-template-columns: 1fr; }
+    @media (max-width: 900px) {
       #map { height: 380px; }
     }
   </style>
 </head>
-<body>
-  <div class="wrap">
-    <!-- LEFT: Info -->
-    <div class="card">
-      <div class="header">
-        <div class="logo">IP</div>
-        <div>
-          <h1>IP Info & Map</h1>
-          <p>Auto-fetched via your backend proxy with live map.</p>
-        </div>
-      </div>
 
-      <div class="pill" id="statusPill">Loading…</div>
-      <div class="pill" id="ipPill">—</div>
-      <div class="pill" id="locPill">—</div>
+<body class="text-white font-sans min-h-screen overflow-x-hidden">
 
-      <div class="grid" id="fieldsGrid"></div>
-
-      <div class="field">
-        <label>Full JSON (raw)</label>
-        <pre id="rawJson">{ }</pre>
-      </div>
-
-      <button id="refreshBtn">⟳ Refresh</button>
-      <button id="copyBtn">⧉ Copy JSON</button>
-    </div>
-
-    <!-- RIGHT: Map -->
-    <div class="card">
-      <div id="map">Loading map…</div>
+  <!-- Subtle Green Glow -->
+  <div class="pointer-events-none fixed inset-0 flex items-center justify-center">
+    <div class="w-[520px] h-[520px] rounded-full 
+      bg-gradient-to-r from-emerald-900 via-green-900 to-emerald-800 
+      blur-[180px] opacity-20">
     </div>
   </div>
 
-  <!-- ✅ Leaflet JS (no integrity attr) -->
+  <main class="relative z-10 px-4 py-10 flex justify-center">
+    <div class="grid gap-6 w-full max-w-7xl lg:grid-cols-2">
+
+      <!-- LEFT CARD -->
+      <div class="bg-white/5 backdrop-blur-xl border border-white/10 
+        rounded-3xl p-6 shadow-2xl">
+
+        <div class="flex items-center gap-4 mb-5">
+          <div class="w-11 h-11 rounded-xl 
+            bg-emerald-900/40 border border-emerald-400/20
+            grid place-items-center font-bold text-emerald-300">
+            IP
+          </div>
+          <div>
+            <h1 class="text-xl font-semibold 
+              bg-gradient-to-r from-emerald-300 to-green-300 
+              bg-clip-text text-transparent">
+              IP Address
+            </h1>
+            <p class="text-gray-400 text-sm">
+              Live geolocation via IP.
+            </p>
+          </div>
+        </div>
+
+        <!-- Pills -->
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span id="statusPill" class="px-3 py-1 rounded-full text-sm 
+            bg-emerald-900/30 border border-emerald-400/30 text-emerald-300">
+            Loading…
+          </span>
+          <span id="ipPill" class="px-3 py-1 rounded-full text-sm 
+            bg-white/5 border border-white/10 text-gray-200">
+            —
+          </span>
+          <span id="locPill" class="px-3 py-1 rounded-full text-sm 
+            bg-white/5 border border-white/10 text-gray-200">
+            —
+          </span>
+        </div>
+
+        <!-- Fields Grid -->
+        <div id="fieldsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4"></div>
+
+        <!-- Raw JSON -->
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-4 mb-4">
+          <label class="text-sm text-gray-400 block mb-2">Full JSON (raw)</label>
+          <pre id="rawJson" class="text-sm text-emerald-300 max-h-52 overflow-auto">{ }</pre>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex gap-3">
+          <button id="refreshBtn" class="px-4 py-2 rounded-xl font-semibold text-emerald-200
+            bg-emerald-900/40 border border-emerald-400/30 hover:bg-emerald-900/60 transition">
+            ⟳ Refresh
+          </button>
+
+          <button id="copyBtn" class="px-4 py-2 rounded-xl font-semibold text-emerald-200
+            bg-emerald-900/40 border border-emerald-400/30 hover:bg-emerald-900/60 transition">
+            ⧉ Copy JSON
+          </button>
+        </div>
+      </div>
+
+      <!-- RIGHT CARD (MAP) -->
+      <div class="bg-white/5 backdrop-blur-xl border border-white/10 
+        rounded-3xl p-4 shadow-2xl">
+
+        <div id="map" class="rounded-2xl border border-white/10">
+          Loading map…
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <script>
     let map, marker;
-
     const el = id => document.getElementById(id);
+
     const setField = (parent, label, val) => {
       const div = document.createElement("div");
-      div.className = "field";
-      div.innerHTML = `<label>${label}</label><div class="value">${val ?? "—"}</div>`;
+      div.className =
+        "bg-white/5 border border-white/10 rounded-xl p-3";
+
+      div.innerHTML = `
+        <label class="text-xs text-emerald-300 block mb-1">${label}</label>
+        <div class="font-semibold text-sm text-white break-words">
+          ${val ?? "—"}
+        </div>
+      `;
       parent.appendChild(div);
     };
 
@@ -211,7 +157,8 @@
 
         status.textContent = data.status || "Success";
         ip.textContent = data.query || "—";
-        loc.textContent = `${data.city || ""}, ${data.regionName || ""}, ${data.country || ""}`;
+        loc.textContent =
+          `${data.city || ""}, ${data.regionName || ""}, ${data.country || ""}`;
 
         const keys = [
           "query","country","countryCode","region","regionName",
@@ -235,15 +182,26 @@
         }
 
         marker = L.marker([lat, lon]).addTo(map);
-        marker.bindPopup(`<b>${data.query}</b><br>${data.city}, ${data.country}`).openPopup();
+        marker
+          .bindPopup(`<b>${data.query}</b><br>${data.city}, ${data.country}`)
+          .openPopup();
+
       } catch (err) {
         console.error(err);
         status.textContent = "Error";
-        grid.innerHTML = `<div class="field"><label>Error</label><div class="value">${err.message}</div></div>`;
+        grid.innerHTML = `
+          <div class="bg-white/5 border border-red-500/40 rounded-xl p-3">
+            <label class="text-xs text-red-400 block mb-1">Error</label>
+            <div class="font-semibold text-sm text-red-300">
+              ${err.message}
+            </div>
+          </div>
+        `;
       }
     }
 
     el("refreshBtn").addEventListener("click", load);
+
     el("copyBtn").addEventListener("click", () => {
       navigator.clipboard.writeText(el("rawJson").textContent);
       el("copyBtn").textContent = "✓ Copied";
