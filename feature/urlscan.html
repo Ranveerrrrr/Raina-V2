@@ -7,7 +7,15 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
-      background: radial-gradient(circle at top, #0f172a, #020617);
+      background: url("wallpapers/6.jpg") no-repeat center center fixed;
+      background-size: cover;
+    }
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: -1;
     }
     .transition-theme {
       transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
@@ -40,19 +48,9 @@
       0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
       20%, 22%, 24%, 55% { opacity: 0; }
     }
-    body {
-    background: url("wallpapers/6.jpg") no-repeat center center fixed;
-    background-size: cover;
-  }
-  body::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: -1;
-    }
   </style>
 </head>
+
 <body id="body" class="text-white flex flex-col items-center min-h-screen p-6 gap-6 font-mono transition-theme">
   <a href="../index.html" class="self-start text-gray-400 hover:text-white">← Back</a>
 
@@ -60,92 +58,94 @@
     🔗 Raina – <span class="scan-text">URL Safety Scanner</span>
   </h1>
 
-
   <p class="max-w-2xl text-gray-400 text-sm leading-relaxed text-center">
-    🛡️ Enter a link and our scanner will check it against <span class="text-cyan-300">Google’s Safe Browsing API</span> 
-    for <span class="text-red-400">malware</span>, <span class="text-yellow-400">phishing</span>, and <span class="text-orange-400">dangerous sites</span>.
+    🛡️ Enter a link and our scanner will check it using
+    <span class="text-cyan-300">Google Safe Browsing</span>
+    for <span class="text-red-400">malware</span>,
+    <span class="text-yellow-400">phishing</span>,
+    and <span class="text-orange-400">dangerous sites</span>.
   </p>
 
   <div class="w-full max-w-xl flex flex-col gap-4">
-    <input id="urlInput" type="url" placeholder="https://example.com" class="p-3 rounded-xl text-black glow focus:outline-none" />
-    <button onclick="checkUrl()" id="scanBtn" class="bg-cyan-600 hover:bg-cyan-700 py-3 rounded-xl shadow-lg font-semibold transition-theme glow">
+    <input id="urlInput" type="url" placeholder="https://example.com"
+      class="p-3 rounded-xl text-black glow focus:outline-none" />
+    <button onclick="checkUrl()" id="scanBtn"
+      class="bg-cyan-600 hover:bg-cyan-700 py-3 rounded-xl shadow-lg font-semibold transition-theme glow">
       🚀 Scan URL
     </button>
     <div id="result" class="text-lg font-bold min-h-[2rem]"></div>
   </div>
 
-  <div id="detailsBox" class="hidden w-full max-w-2xl mt-4 bg-gray-800/80 text-white p-4 rounded-xl shadow-lg border border-gray-700 space-y-2 transition-theme"></div>
+  <div id="detailsBox"
+    class="hidden w-full max-w-2xl mt-4 bg-gray-800/80 text-white p-4 rounded-xl shadow-lg border border-gray-700 space-y-2 transition-theme">
+  </div>
 
+  <div class="w-full max-w-xl bg-gray-950/80 p-4 rounded-xl border border-gray-700 shadow-lg">
+    <h2 class="text-lg font-semibold mb-2 text-cyan-300">🕓 Scan History (Last 5)</h2>
+    <ul id="historyList" class="font-mono text-sm text-green-400 space-y-1"></ul>
+  </div>
 
-    <div class="w-full max-w-xl bg-gray-950/80 p-4 rounded-xl border border-gray-700 shadow-lg">
-      <h2 class="text-lg font-semibold mb-2 text-cyan-300">🕓 Scan History (Last 5)</h2>
-      <ul id="historyList" class="font-mono text-sm text-green-400 space-y-1"></ul>
-    </div>
   <script>
-    const API_KEY = "AIzaSyAuJ5AMiQkrhFsUsjLSrCW79SGz5Vn0yFI"; 
-
     function isValidUrl(str) {
       try {
         const url = new URL(str);
         return url.protocol === "http:" || url.protocol === "https:";
-      } catch (_) { return false; }
+      } catch (_) {
+        return false;
+      }
     }
 
     function setThemeSafe() {
-      document.getElementById('body').className = 'bg-green-950 text-white flex flex-col items-center min-h-screen p-6 gap-6 font-mono transition-theme';
-      document.getElementById('scanBtn').className = 'bg-green-600 hover:bg-green-700 py-3 rounded-xl font-semibold glow transition-theme';
+      document.getElementById("body").className =
+        "bg-green-950 text-white flex flex-col items-center min-h-screen p-6 gap-6 font-mono transition-theme";
+      document.getElementById("scanBtn").className =
+        "bg-green-600 hover:bg-green-700 py-3 rounded-xl font-semibold glow transition-theme";
     }
 
     function setThemeUnsafe() {
-      document.getElementById('body').className = 'bg-red-950 text-white flex flex-col items-center min-h-screen p-6 gap-6 font-mono transition-theme';
-      document.getElementById('scanBtn').className = 'bg-red-600 hover:bg-red-700 py-3 rounded-xl font-semibold glow-red transition-theme';
+      document.getElementById("body").className =
+        "bg-red-950 text-white flex flex-col items-center min-h-screen p-6 gap-6 font-mono transition-theme";
+      document.getElementById("scanBtn").className =
+        "bg-red-600 hover:bg-red-700 py-3 rounded-xl font-semibold glow-red transition-theme";
     }
 
     function resetTheme() {
-      document.getElementById('body').className = 'text-white flex flex-col items-center min-h-screen p-6 gap-6 font-mono transition-theme';
-      document.getElementById('scanBtn').className = 'bg-cyan-600 hover:bg-cyan-700 py-3 rounded-xl font-semibold glow transition-theme';
+      document.getElementById("body").className =
+        "text-white flex flex-col items-center min-h-screen p-6 gap-6 font-mono transition-theme";
+      document.getElementById("scanBtn").className =
+        "bg-cyan-600 hover:bg-cyan-700 py-3 rounded-xl font-semibold glow transition-theme";
     }
 
     async function checkUrl() {
-      const url = document.getElementById('urlInput').value.trim();
-      const resultEl = document.getElementById('result');
-      const detailsEl = document.getElementById('detailsBox');
+      const url = document.getElementById("urlInput").value.trim();
+      const resultEl = document.getElementById("result");
+      const detailsEl = document.getElementById("detailsBox");
 
-      detailsEl.classList.add('hidden');
-      detailsEl.innerHTML = '';
-      resultEl.textContent = '';
+      detailsEl.classList.add("hidden");
+      detailsEl.innerHTML = "";
+      resultEl.textContent = "";
       resetTheme();
 
       if (!url) {
-        resultEl.textContent = '⚠️ Please enter a URL';
-        resultEl.className = 'text-yellow-400 font-bold';
+        resultEl.textContent = "⚠️ Please enter a URL";
+        resultEl.className = "text-yellow-400 font-bold";
         return;
       }
 
       if (!isValidUrl(url)) {
-        resultEl.textContent = '❌ Invalid URL format';
-        resultEl.className = 'text-red-400 font-bold';
+        resultEl.textContent = "❌ Invalid URL format";
+        resultEl.className = "text-red-400 font-bold";
         return;
       }
 
       resultEl.innerHTML = '<span class="spinner"></span> Scanning...';
-      resultEl.className = 'text-white font-bold';
-
-      const body = {
-        client: { clientId: "Raina", clientVersion: "1.0" },
-        threatInfo: {
-          threatTypes: ["MALWARE", "SOCIAL_ENGINEERING", "UNWANTED_SOFTWARE", "POTENTIALLY_HARMFUL_APPLICATION"],
-          platformTypes: ["ANY_PLATFORM"],
-          threatEntryTypes: ["URL"],
-          threatEntries: [{ url }]
-        }
-      };
+      resultEl.className = "text-white font-bold";
 
       try {
-        const res = await fetch(`https://safebrowsing.googleapis.com/v4/threatMatches:find?key=${API_KEY}`, {
+        const res = await fetch("https://ai-cyber-backend-1.onrender.com/api/check-url", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body)
+          body: JSON.stringify({ url })
         });
 
         const data = await res.json();
@@ -154,8 +154,9 @@
         if (data && data.matches && data.matches.length > 0) {
           detections = data.matches.length;
           const match = data.matches[0];
-          resultEl.textContent = '❗ UNSAFE URL detected!';
-          resultEl.className = 'text-red-400 font-bold glow-red';
+
+          resultEl.textContent = "❗ UNSAFE URL detected!";
+          resultEl.className = "text-red-400 font-bold glow-red";
           setThemeUnsafe();
 
           detailsEl.innerHTML = `
@@ -165,8 +166,8 @@
             <p><strong>🔗 URL:</strong> ${match.threat.url}</p>
           `;
         } else {
-          resultEl.textContent = '✅ This URL is clean';
-          resultEl.className = 'text-green-400 font-bold glow';
+          resultEl.textContent = "✅ This URL is clean";
+          resultEl.className = "text-green-400 font-bold glow";
           setThemeSafe();
 
           detailsEl.innerHTML = `
@@ -176,10 +177,10 @@
         }
 
         saveHistory(url, detections);
-        detailsEl.classList.remove('hidden');
+        detailsEl.classList.remove("hidden");
       } catch (err) {
-        resultEl.textContent = '❌ Error checking URL';
-        resultEl.className = 'text-red-400 font-bold';
+        resultEl.textContent = "❌ Backend error";
+        resultEl.className = "text-red-400 font-bold";
         console.error(err);
       }
     }
@@ -199,7 +200,7 @@
       history.forEach(item => {
         const li = document.createElement("li");
         li.innerHTML = `[${item.time}] <span class="text-cyan-300">${item.url}</span> — 
-          <span class="${item.detections > 0 ? 'text-red-400' : 'text-green-400'}">
+          <span class="${item.detections > 0 ? "text-red-400" : "text-green-400"}">
             ${item.detections > 0 ? item.detections + " threats" : "Clean"}
           </span>`;
         list.appendChild(li);
