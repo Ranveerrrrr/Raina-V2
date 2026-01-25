@@ -6,36 +6,11 @@
   <title>File / Link Malware Scan – Raina</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    .transition-theme {
-      transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    .loader {
-      border: 4px solid rgba(255,255,255,0.2);
-      border-top: 4px solid #38bdf8;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-      margin: auto;
-    }
-
-    
-    body {
-      background: url("wallpapers/1.jpg") no-repeat center center fixed;
-      background-size: cover;
-      position: relative;
-    }
-    body::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.7); 
-      z-index: -1;
-    }
+    .transition-theme { transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .loader { border: 4px solid rgba(255,255,255,0.2); border-top: 4px solid #38bdf8; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: auto; }
+    body { background: url("wallpapers/1.jpg") no-repeat center center fixed; background-size: cover; position: relative; }
+    body::before { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0.7); z-index: -1; }
   </style>
 </head>
 <body id="body" class="text-white flex flex-col items-center min-h-screen p-6 gap-6 font-mono transition-theme relative">
@@ -51,9 +26,15 @@
     </p>
   </div>
 
+  <!-- Example Box with Autofill -->
   <div id="infoBox" class="bg-gray-800/80 text-sm p-4 rounded-xl max-w-2xl text-gray-200 shadow-md transition-theme">
-    <p>🔗 Example: <code class="text-purple-300">https://www.eicar.org/download/eicar.com.txt</code></p>
-    <p class="mt-1">⚡ Fast multi-engine scan via <span class="text-cyan-400">Raina backend</span>.</p>
+    <p class="flex flex-wrap items-center gap-2">
+      🔗 <span class="text-purple-300 font-semibold">Example test file:</span>
+      <button onclick="fillExample()" class="text-cyan-400 hover:underline break-all">
+        https://www.eicar.org/download/eicar.com.txt
+      </button>
+    </p>
+    <p class="mt-1">⚡ Click the example to auto-fill and scan a known test malware file via <span class="text-cyan-400">Raina backend</span>.</p>
   </div>
 
   <div class="w-full max-w-xl flex flex-col gap-4">
@@ -77,7 +58,13 @@
 
   <script>
     const BACKEND_URL = 'https://ai-cyber-backend-1.onrender.com/scan';
-    //const BACKEND_URL = 'https://raina-api.vercel.app/api/scan';
+    const EXAMPLE_URL = 'https://www.eicar.org/download/eicar.com.txt';
+
+    function fillExample() {
+      const input = document.getElementById('linkInput');
+      input.value = EXAMPLE_URL;
+      input.focus();
+    }
 
     function setThemeSafe() {
       document.getElementById('body').className = 'text-white flex flex-col items-center min-h-screen p-6 gap-6 font-mono transition-theme relative bg-green-950/40';
@@ -158,7 +145,6 @@
         }
 
         detailsEl.classList.remove('hidden');
-
         saveHistory(url, total);
 
       } catch (err) {

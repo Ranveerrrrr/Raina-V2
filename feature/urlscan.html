@@ -66,6 +66,17 @@
     and <span class="text-orange-400">dangerous sites</span>.
   </p>
 
+  <!-- Example Box -->
+  <div class="w-full max-w-2xl bg-gray-900/70 border border-gray-700 rounded-xl p-4 shadow-lg text-sm text-gray-300">
+    <p class="flex items-center gap-2">
+      🔗 <span class="text-cyan-300 font-semibold">Example test URL:</span>
+      <button onclick="fillExample()" class="text-purple-400 hover:underline break-all">
+        https://testsafebrowsing.appspot.com/s/phishing.html
+      </button>
+    </p>
+    <p class="mt-2 text-gray-400">⚡ Click the example to auto-fill and test a known phishing page.</p>
+  </div>
+
   <div class="w-full max-w-xl flex flex-col gap-4">
     <input id="urlInput" type="url" placeholder="https://example.com"
       class="p-3 rounded-xl text-black glow focus:outline-none" />
@@ -86,6 +97,14 @@
   </div>
 
   <script>
+    const EXAMPLE_URL = "https://testsafebrowsing.appspot.com/s/phishing.html";
+
+    function fillExample() {
+      const input = document.getElementById("urlInput");
+      input.value = EXAMPLE_URL;
+      input.focus();
+    }
+
     function isValidUrl(str) {
       try {
         const url = new URL(str);
