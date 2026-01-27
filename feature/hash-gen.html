@@ -2,187 +2,110 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hash Generator – CyberScan</title>
+  <title>Hash Generator – Raina</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
     body {
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: linear-gradient(135deg, #0a0b0f, #1b1f29);
-      color: #e5e7eb;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      padding: 2rem;
-    }
-
-    header {
-      width: 100%;
-      max-width: 900px;
-      text-align: left;
-      margin-bottom: 2rem;
-    }
-
-    header a {
-      color: #9ca3af;
-      text-decoration: none;
-      transition: 0.2s;
-    }
-
-    header a:hover {
-      color: #fff;
-    }
-
-    .container {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(14px);
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 2rem;
-      max-width: 550px;
-      width: 100%;
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
-      transition: all 0.3s ease;
-    }
-
-    .container:hover {
-      box-shadow: 0 10px 50px rgba(59, 130, 246, 0.2);
-      transform: translateY(-4px);
-    }
-
-    h2 {
-      text-align: center;
-      font-size: 1.8rem;
-      color: #3b82f6;
-      margin-bottom: 1rem;
-    }
-
-    textarea {
-      width: 100%;
-      height: 90px;
-      border-radius: 12px;
-      border: 1px solid rgba(59, 130, 246, 0.4);
-      background: rgba(0, 0, 0, 0.4);
-      color: #fff;
-      padding: 12px;
-      font-size: 1rem;
-      resize: vertical;
-      transition: 0.3s;
-    }
-
-    textarea:focus {
-      outline: none;
-      border-color: #3b82f6;
-      box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
-    }
-
-    select, button {
-      padding: 0.9rem;
-      border-radius: 12px;
-      border: none;
-      font-size: 1rem;
-      margin-top: 10px;
-      width: 100%;
-      transition: all 0.3s ease;
-    }
-
-    select {
-      background: rgba(0, 0, 0, 0.5);
-      color: #fff;
-      border: 1px solid rgba(59, 130, 246, 0.3);
-    }
-
-    button {
-      background: linear-gradient(90deg, #2563eb, #06b6d4);
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 15px;
-      border: none;
-    }
-
-    button:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
-    }
-
-    .output {
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(59, 130, 246, 0.3);
-      margin-top: 20px;
-      padding: 15px;
-      border-radius: 10px;
-      font-family: "Courier New", monospace;
-      color: #93c5fd;
-      word-break: break-word;
-      font-size: 0.95rem;
-      text-align: left;
-    }
-
-    .info {
-      margin-top: 2rem;
-      background: rgba(255, 255, 255, 0.04);
-      border-left: 4px solid #3b82f6;
-      padding: 1rem;
-      border-radius: 10px;
-      color: #d1d5db;
-      line-height: 1.5;
-    }
-
-    footer {
-      margin-top: auto;
-      color: #9ca3af;
-      font-size: 0.9rem;
-      padding: 2rem 0;
-      text-align: center;
-    }
-
-    footer span {
-      color: #3b82f6;
-      font-weight: 600;
+      background:
+        radial-gradient(1200px circle at 20% 10%, rgba(129,140,248,0.18), transparent 40%),
+        radial-gradient(1000px circle at 80% 20%, rgba(99,102,241,0.14), transparent 45%),
+        linear-gradient(180deg, #05070f 0%, #070a16 100%);
     }
   </style>
 </head>
-<body>
-  <header>
-    <a href="../index.html">← Back</a>
-  </header>
 
-  <div class="container">
-    <h2>🔒 Hash Generator</h2>
+<body class="text-white font-sans min-h-screen overflow-x-hidden flex flex-col items-center px-4 py-10">
 
-    <textarea id="inputText" placeholder="Enter text to hash..."></textarea>
-
-    <select id="algo">
-      <option value="md5">MD5</option>
-      <option value="sha1">SHA-1</option>
-      <option value="sha224">SHA-224</option>
-      <option value="sha256" selected>SHA-256</option>
-      <option value="sha384">SHA-384</option>
-      <option value="sha512">SHA-512</option>
-      <option value="sha3-224">SHA3-224</option>
-      <option value="sha3-256">SHA3-256</option>
-      <option value="sha3-384">SHA3-384</option>
-      <option value="sha3-512">SHA3-512</option>
-    </select>
-
-    <button onclick="generateHash()">Generate Hash</button>
-
-    <div class="output" id="output">Your hash will appear here...</div>
-
-    <div class="info">
-      <strong>🔍 Why Hashing Matters:</strong>
-      <ul>
-        <li>✅ Ensures <b>data integrity</b> — even one character change creates a new hash.</li>
-        <li>🔐 Used for <b>secure password storage</b> (never store raw passwords).</li>
-        <li>🧾 Helps verify <b>file authenticity</b> using checksums (e.g., SHA-256).</li>
-        <li>⚙️ Important in <b>digital signatures</b> and blockchain security.</li>
-      </ul>
+  <!-- Glow Ring -->
+  <div class="pointer-events-none fixed inset-0 flex items-center justify-center">
+    <div class="w-[520px] h-[520px] rounded-full 
+      bg-gradient-to-r from-indigo-500 via-violet-500 to-indigo-400 
+      blur-[170px] opacity-25">
     </div>
   </div>
 
-  <footer>
-    Built by <span>Ranveer</span> | CyberScan Project
+  <!-- Header -->
+  <header class="relative z-10 w-full max-w-4xl mb-8">
+    <a href="../index.html"
+      class="inline-flex items-center gap-2 text-gray-400 hover:text-white transition">
+      ← Back to Raina
+    </a>
+  </header>
+
+  <!-- Main Card -->
+  <main class="relative z-10 w-full max-w-xl">
+    <div class="bg-white/5 backdrop-blur-xl border border-white/10 
+      rounded-3xl p-8 shadow-2xl">
+
+      <h2 class="text-center text-2xl font-bold 
+        bg-gradient-to-r from-indigo-400 to-violet-400 
+        bg-clip-text text-transparent mb-6">
+        🔐 Hash Generator
+      </h2>
+
+      <!-- Input -->
+      <textarea id="inputText"
+        class="w-full h-24 rounded-2xl border border-indigo-400/30 
+        bg-black/40 text-white p-4 text-base resize-y
+        focus:outline-none focus:border-indigo-400 
+        focus:ring-2 focus:ring-indigo-400/30 transition"
+        placeholder="Enter text to hash..."></textarea>
+
+      <!-- Algorithm -->
+      <select id="algo"
+        class="w-full mt-3 rounded-2xl border border-indigo-400/30 
+        bg-black/50 text-white p-3 text-base
+        focus:outline-none focus:border-indigo-400 
+        focus:ring-2 focus:ring-indigo-400/30 transition">
+        <option value="md5">MD5</option>
+        <option value="sha1">SHA-1</option>
+        <option value="sha224">SHA-224</option>
+        <option value="sha256" selected>SHA-256</option>
+        <option value="sha384">SHA-384</option>
+        <option value="sha512">SHA-512</option>
+        <option value="sha3-224">SHA3-224</option>
+        <option value="sha3-256">SHA3-256</option>
+        <option value="sha3-384">SHA3-384</option>
+        <option value="sha3-512">SHA3-512</option>
+      </select>
+
+      <!-- Button -->
+      <button onclick="generateHash()"
+        class="w-full mt-5 py-3 rounded-2xl font-semibold text-white
+        bg-gradient-to-r from-indigo-500 to-violet-500 
+        hover:brightness-110 hover:shadow-lg hover:shadow-indigo-400/30 
+        transition">
+        Generate Hash
+      </button>
+
+      <!-- Output -->
+      <div id="output"
+        class="mt-6 bg-black/50 border border-indigo-400/30 
+        rounded-2xl p-4 font-mono text-sm text-indigo-300 
+        break-words text-left">
+        Your hash will appear here...
+      </div>
+
+      <!-- Info Box -->
+      <div
+        class="mt-8 bg-white/5 border-l-4 border-indigo-400 
+        rounded-2xl p-4 text-gray-300 leading-relaxed">
+        <strong class="text-indigo-300">🔍 Why Hashing Matters:</strong>
+        <ul class="list-disc list-inside mt-2 space-y-1">
+          <li>Ensures <b>data integrity</b> — even one character change creates a new hash.</li>
+          <li>Used for <b>secure password storage</b> (never store raw passwords).</li>
+          <li>Helps verify <b>file authenticity</b> using checksums (e.g., SHA-256).</li>
+          <li>Important in <b>digital signatures</b> and blockchain security.</li>
+        </ul>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="relative z-10 mt-10 text-sm text-gray-500 text-center">
+    Built by <span class="text-indigo-400 font-semibold">Ranveer</span> • Raina Project
   </footer>
 
   <script>
@@ -199,12 +122,15 @@
       output.innerText = "⏳ Generating hash...";
 
       try {
-        const res = await fetch(`https://api.hashify.net/hash/${algo}/hex?value=${encodeURIComponent(text)}`);
+        const res = await fetch(
+          `https://api.hashify.net/hash/${algo}/hex?value=${encodeURIComponent(text)}`
+        );
         const data = await res.json();
         if (data.Digest) {
           output.innerText = data.Digest;
         } else {
-          output.innerText = "❌ Failed to generate hash. Check input or try another algorithm.";
+          output.innerText =
+            "❌ Failed to generate hash. Check input or try another algorithm.";
         }
       } catch (e) {
         output.innerText = "❌ Error connecting to Hashify API.";

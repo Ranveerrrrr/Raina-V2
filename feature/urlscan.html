@@ -227,6 +227,20 @@
     }
 
     loadHistory();
+
+    function getUrlParam(name) {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(name);
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const paramUrl = getUrlParam("url");
+    if (paramUrl && isValidUrl(paramUrl)) {
+      const input = document.getElementById("urlInput");
+      input.value = paramUrl;
+      checkUrl(); // auto-run scan
+    }
+  });
   </script>
 </body>
 </html>

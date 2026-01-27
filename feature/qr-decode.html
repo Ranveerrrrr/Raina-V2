@@ -3,175 +3,141 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QR Code Decoder (API Version)</title>
+  <title>QR Code Decoder – Raina</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
-    /* ---------- GLOBAL ---------- */
     body {
-      margin: 0;
-      padding: 0;
-      background: radial-gradient(circle at top, #0b0c10, #0a0d13, #0b0f17);
-      font-family: "Poppins", sans-serif;
-      color: #e2e8f0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    /* ---------- HEADER ---------- */
-    header {
-      width: 100%;
-      background: rgba(17, 24, 39, 0.95);
-      padding: 1rem 0;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-      position: relative;
-      text-align: center;
-    }
-
-    header h1 {
-      color: #66fcf1;
-      font-size: 1.8rem;
-      margin: 0;
-      letter-spacing: 0.5px;
-    }
-
-    .back-btn {
-      position: absolute;
-      left: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: #66fcf1;
-      font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      transition: 0.2s;
-    }
-
-    .back-btn:hover {
-      color: #45a29e;
-      transform: translateY(-50%) scale(1.05);
-    }
-
-    /* ---------- CONTAINER ---------- */
-    .container {
-      background: rgba(31, 41, 55, 0.95);
-      padding: 2rem;
-      margin-top: 60px;
-      border-radius: 16px;
-      width: 90%;
-      max-width: 420px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-      text-align: center;
-      transition: 0.3s ease;
-    }
-
-    .container:hover {
-      box-shadow: 0 10px 40px rgba(102, 252, 241, 0.15);
-    }
-
-    h2 {
-      margin: 0 0 0.8rem 0;
-      color: #66fcf1;
-      font-weight: 700;
-      font-size: 1.3rem;
-    }
-
-    p {
-      color: #cbd5e1;
-      font-size: 0.95rem;
-      margin-bottom: 1.5rem;
-    }
-
-    input[type="file"] {
-      background: #0b0c10;
-      border: 2px solid #45a29e;
-      color: #e2e8f0;
-      padding: 0.9rem;
-      border-radius: 0.75rem;
-      width: 100%;
-      cursor: pointer;
-      transition: 0.2s;
-      font-size: 0.95rem;
-    }
-
-    input[type="file"]:hover {
-      border-color: #66fcf1;
-      background: #12151a;
-    }
-
-    .loading {
-      color: #66fcf1;
-      font-size: 0.95rem;
-      margin-top: 1.2rem;
-      font-weight: 500;
-    }
-
-    .result {
-      margin-top: 1.5rem;
-      background: #0b0c10;
-      padding: 1rem;
-      border-radius: 0.75rem;
-      font-size: 0.9rem;
-      color: #9fdfd5;
-      word-break: break-all;
-      border: 1px solid #2d3748;
-    }
-
-    strong {
-      color: #22d3ee;
-    }
-
-    footer {
-      margin-top: auto;
-      padding: 1.5rem 0;
-      text-align: center;
-      color: #9ca3af;
-      font-size: 0.9rem;
-    }
-
-    footer span {
-      color: #66fcf1;
-      font-weight: 600;
+      background:
+        radial-gradient(1200px circle at 20% 10%, rgba(102,252,241,0.18), transparent 40%),
+        radial-gradient(1000px circle at 80% 20%, rgba(69,162,158,0.14), transparent 45%),
+        linear-gradient(180deg, #05070f 0%, #070a16 100%);
     }
   </style>
 </head>
-<body>
-  <header>
-    <button class="back-btn" onclick="goBack()">← Back</button>
-    <h1>QR Code Decoder</h1>
-  </header>
 
-  <div class="container">
-    <h2>📷 Decode Any QR Code</h2>
-    <p>Upload a QR code image to decode it instantly using our public API.</p>
+<body class="text-white font-sans min-h-screen overflow-x-hidden flex flex-col items-center px-4 py-10">
 
-    <input type="file" id="qr-input" accept="image/*" />
-    <div id="loading" class="loading"></div>
-    <div id="result" class="result"></div>
+  <!-- Glow Ring -->
+  <div class="pointer-events-none fixed inset-0 flex items-center justify-center">
+    <div class="w-[520px] h-[520px] rounded-full 
+      bg-gradient-to-r from-cyan-400 via-teal-400 to-cyan-300 
+      blur-[170px] opacity-25">
+    </div>
   </div>
 
-  <footer>
-    Built by <span>Ranveer</span> | QR Decoder Tool
+  <!-- Header -->
+  <header class="relative z-10 w-full max-w-xl mb-6 flex items-center justify-between">
+    <a href="../index.html"
+      class="inline-flex items-center gap-2 text-gray-400 hover:text-white transition">
+      ← Back to Raina
+    </a>
+
+    <h1 class="text-xl font-semibold 
+      bg-gradient-to-r from-cyan-400 to-teal-400 
+      bg-clip-text text-transparent">
+      QR Code Decoder
+    </h1>
+  </header>
+
+  <!-- Main Card -->
+  <main class="relative z-10 w-full max-w-md">
+    <div class="bg-white/5 backdrop-blur-xl border border-white/10 
+      rounded-3xl p-8 shadow-2xl text-center">
+
+
+      <!-- Example Image Preview -->
+      <img id="qrPreview"
+        src=""
+        alt="QR Preview"
+        class="hidden mx-auto mb-4 w-40 h-40 rounded-xl border border-cyan-400/30 bg-black/40" />
+
+      <h2 class="text-lg font-bold 
+        bg-gradient-to-r from-cyan-400 to-teal-400 
+        bg-clip-text text-transparent mb-2">
+        Decode Any QR Code
+      </h2>
+
+      <p class="text-gray-400 text-sm mb-6">
+        Upload a QR image or try the example to decode instantly.
+      </p>
+
+      <button id="exampleBtn"
+      class="mb-4 px-4 py-2 rounded-xl text-sm font-semibold text-black
+      bg-gradient-to-r from-cyan-400 to-teal-400 
+      hover:brightness-110 hover:shadow-lg hover:shadow-cyan-400/20 transition">
+      Example QR
+    </button>
+
+      <!-- File Input -->
+      <input type="file" id="qr-input" accept="image/*"
+        class="w-full rounded-2xl border border-cyan-400/30 
+        bg-black/40 text-gray-200 p-3 text-sm cursor-pointer
+        hover:border-cyan-400 transition" />
+
+      <!-- Loading -->
+      <div id="loading"
+        class="mt-4 text-sm font-semibold text-cyan-300">
+      </div>
+
+      <!-- Result -->
+      <div id="result"
+        class="mt-5 bg-black/50 border border-cyan-400/20 
+        rounded-xl p-4 text-sm text-cyan-300 break-words hidden">
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="relative z-10 mt-10 text-sm text-gray-500 text-center">
+    Built by <span class="text-cyan-400 font-semibold">Ranveer</span> • Raina Project
   </footer>
 
   <script>
-    function goBack() {
-      window.location.href = "../index.html";
-    }
-
     const input = document.getElementById("qr-input");
     const loading = document.getElementById("loading");
     const resultDiv = document.getElementById("result");
+    const exampleBtn = document.getElementById("exampleBtn");
+    const qrPreview = document.getElementById("qrPreview");
 
-    input.addEventListener("change", async (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
+    function isValidUrl(str) {
+      try {
+        new URL(str);
+        return true;
+      } catch {
+        return false;
+      }
+    }
 
+    function renderResult(text) {
+      if (isValidUrl(text)) {
+        const encoded = encodeURIComponent(text);
+        const target =
+          `/feature/urlscan.html?url=${encoded}`;
+
+        resultDiv.innerHTML = `
+          <strong class="text-cyan-400">Decoded URL:</strong><br>
+          <a href="${target}" 
+             class="underline text-cyan-300 hover:text-white transition">
+            ${text}
+          </a>
+          <div class="mt-2 text-xs text-gray-400">
+            Click to scan this URL in Raina
+          </div>
+        `;
+      } else {
+        resultDiv.innerHTML = `
+          <strong class="text-cyan-400">Decoded Text:</strong><br>${text}
+        `;
+      }
+
+      resultDiv.classList.remove("hidden");
+    }
+
+    async function decodeFile(file) {
+      resultDiv.classList.add("hidden");
       resultDiv.textContent = "";
       loading.textContent = "🔍 Decoding... Please wait.";
 
@@ -188,15 +154,50 @@
         const result = data[0]?.symbol[0]?.data;
 
         if (result) {
-          resultDiv.innerHTML = `<strong>Decoded Text:</strong><br>${result}`;
+          renderResult(result);
         } else {
           resultDiv.textContent = "❌ No QR code detected in the image.";
+          resultDiv.classList.remove("hidden");
         }
       } catch (err) {
         console.error(err);
         resultDiv.textContent = "⚠️ Error decoding QR code. Please try again.";
+        resultDiv.classList.remove("hidden");
       } finally {
         loading.textContent = "";
+      }
+    }
+
+    // File upload handler
+    input.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      qrPreview.src = URL.createObjectURL(file);
+      qrPreview.classList.remove("hidden");
+
+      decodeFile(file);
+    });
+
+    // 🔥 Example QR logic (local qr.png)
+    exampleBtn.addEventListener("click", async () => {
+      loading.textContent = "📥 Loading example QR...";
+      resultDiv.classList.add("hidden");
+
+      try {
+        const res = await fetch("qr.png");
+        const blob = await res.blob();
+        const file = new File([blob], "qr.png", { type: blob.type });
+
+        qrPreview.src = "qr.png";
+        qrPreview.classList.remove("hidden");
+
+        decodeFile(file);
+      } catch (err) {
+        console.error(err);
+        loading.textContent = "";
+        resultDiv.textContent = "⚠️ Failed to load example QR.";
+        resultDiv.classList.remove("hidden");
       }
     });
   </script>
