@@ -1,5 +1,12 @@
 # Raina – School Project by Ranveer
 
+![Total Commits](https://img.shields.io/github/commit-activity/t/Ranveerrrrr/Raina-V2)
+![Last Commit](https://img.shields.io/github/last-commit/Ranveerrrrr/Raina-V2)
+![Repo Size](https://img.shields.io/github/repo-size/Ranveerrrrr/Raina-V2)
+![Top Language](https://img.shields.io/github/languages/top/Ranveerrrrr/Raina-V2)
+![License](https://img.shields.io/github/license/Ranveerrrrr/Raina-V2)
+
+
 **Raina** is a school project designed to spread awareness about **cybersecurity** and give students hands-on exposure to tools used in ethical hacking, OSINT (Open Source Intelligence), and online safety.  
 
 The platform is a **web-based toolkit** built with **HTML, Tailwind CSS, and JavaScript**, focusing on simplicity and usability. It provides multiple tools that simulate real-world cybersecurity practices while being safe and educational.  
